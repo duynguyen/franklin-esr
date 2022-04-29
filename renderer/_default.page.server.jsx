@@ -9,6 +9,8 @@ export { passToClient }
 const passToClient = ['pageProps', 'documentProps', 'someAsyncProps']
 
 function render(pageContext) {
+  console.log(pageContext.auth)
+  
   const { Page, pageProps } = pageContext
   const pageHtml = ReactDOMServer.renderToString(
     <Layout pageContext={pageContext}>

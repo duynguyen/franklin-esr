@@ -17,11 +17,11 @@ async function handleFetchEvent(
   request,
   env
 ) {
-  if (isAssetUrl(request.url) || request.url.endsWith('/robots.txt')) {
+  if (isAssetUrl(request.url) || request.url.endsWith('/robots.txt') || request.url.endsWith('/favicon.ico')) {
     return env.ASSETS.fetch(request);
   }
   
-  const response = await handleSsr(request.url);
+  const response = await handleSsr(request.url, request.headers);
   if (response !== null) return response;
 }
 function isAssetUrl(url) {
@@ -31,8 +31,11 @@ function isAssetUrl(url) {
 
 const renderPage = createPageRenderer({ isProduction: true });
 
-async function handleSsr(url) {
-  const pageContextInit = { url };
+async function handleSsr(url, headers) {
+  const auth = headers.get('authorization')
+  const token = auth && auth.startsWith('Bearer ') && auth.substring('Bearer '.length)
+  
+  const pageContextInit = { url, auth: token };
   const pageContext = await renderPage(pageContextInit);
   const { httpResponse } = pageContext;
   if (!httpResponse) {
