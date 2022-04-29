@@ -2,7 +2,7 @@ import express from 'express'
 import vite from 'vite'
 import { createPageRenderer } from 'vite-plugin-ssr'
 import fetch from 'node-fetch'
-import { fileURLToPath } from 'url'
+import { fileURLToPath, format } from 'url'
 import { dirname } from 'path'
 
 const isProduction = process.env.NODE_ENV === 'production'
@@ -25,9 +25,32 @@ async function startServer() {
     app.use(viteDevServer.middlewares)
   }
   
+  app.get('/api/model', async(req, res) => {
+    const path = req.query.path
+    const endpoint = 'https://runtime.adobe.io/api/v1/web/bdelacre/default/ibiza-content-services/wknd/live/graphql';
+    const gql = `
+        {
+            pageByPath: documents(path: "${path}") {
+                header { id path role tags }
+                properties { schema data }
+                ... on Page { body { contentType content } }
+            }
+        }
+      `;
+  
+    const reqModel = await fetch(`${endpoint}?query=${gql}`)
+    const model = await reqModel.json();
+    
+    res.json(model);
+  })
+  
   const renderPage = createPageRenderer({ viteDevServer, isProduction, root })
   app.get('*', async (req, res, next) => {
-    const url = req.originalUrl
+    const url = format({
+      protocol: req.protocol,
+      host: req.get('host'),
+      pathname: req.originalUrl
+    });
     const pageContextInit = {
       url,
       fetch
