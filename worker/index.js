@@ -21,7 +21,7 @@ async function handleFetchEvent(
     return env.ASSETS.fetch(request);
   }
   
-  const response = await handleSsr(request.url, request.headers);
+  const response = await handleSsr(request.url);
   if (response !== null) return response;
 }
 function isAssetUrl(url) {
@@ -31,9 +31,9 @@ function isAssetUrl(url) {
 
 const renderPage = createPageRenderer({ isProduction: true });
 
-async function handleSsr(url, headers) {
-  const auth = headers.get('authorization')
-  const token = auth && auth.startsWith('Bearer ') && auth.substring('Bearer '.length)
+async function handleSsr(url) {
+  const { searchParams } = new URL(url);
+  const token = searchParams.get('token');
   
   const pageContextInit = { url, auth: token };
   const pageContext = await renderPage(pageContextInit);
