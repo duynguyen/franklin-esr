@@ -1,7 +1,7 @@
 export default function Page({model}) {
   return (
     <>
-      <h1>Welcome</h1>
+      <h1>Model</h1>
       <pre>{JSON.stringify(model, null, 4)}</pre>
     </>
   )
