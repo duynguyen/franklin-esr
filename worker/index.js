@@ -66,7 +66,7 @@ async function handleAPIEvent(request, env) {
         }
       });
     }
-    else if (request.method === 'PUT') {
+    else if (request.method === 'PUT' && request.headers.get('x-api-secret') === '69d90f38-70b9-4937-a92c-4e5f5713a0b6') {
       const model = await query(path);
       await env.MODELS.put(path, model);
   
