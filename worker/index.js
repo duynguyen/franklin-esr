@@ -32,10 +32,7 @@ function isAssetUrl(url) {
 const renderPage = createPageRenderer({ isProduction: true });
 
 async function handleSsr(url) {
-  const { searchParams } = new URL(url);
-  const token = searchParams.get('token');
-  
-  const pageContextInit = { url, auth: token };
+  const pageContextInit = { url, fetch: (...args) => fetch(...args) };
   const pageContext = await renderPage(pageContextInit);
   const { httpResponse } = pageContext;
   if (!httpResponse) {

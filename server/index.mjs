@@ -1,6 +1,7 @@
 import express from 'express'
 import vite from 'vite'
 import { createPageRenderer } from 'vite-plugin-ssr'
+import fetch from 'node-fetch'
 import { fileURLToPath } from 'url'
 import { dirname } from 'path'
 
@@ -29,6 +30,7 @@ async function startServer() {
     const url = req.originalUrl
     const pageContextInit = {
       url,
+      fetch
     }
     const pageContext = await renderPage(pageContextInit)
     const { httpResponse } = pageContext

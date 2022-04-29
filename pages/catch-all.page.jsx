@@ -1,5 +1,3 @@
-import fetch from 'cross-fetch'
-
 export default function Page({model}) {
   return (
     <>
@@ -9,7 +7,7 @@ export default function Page({model}) {
   )
 }
 
-export async function onBeforeRender({routeParams}) {
+export async function onBeforeRender({routeParams, fetch = window.fetch}) {
   let model = {}
   
   try {
