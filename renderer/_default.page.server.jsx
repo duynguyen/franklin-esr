@@ -9,8 +9,6 @@ export { passToClient }
 const passToClient = ['pageProps', 'documentProps', 'someAsyncProps']
 
 function render(pageContext) {
-  console.log(pageContext.auth)
-  
   const { Page, pageProps } = pageContext
   const pageHtml = ReactDOMServer.renderToString(
     <Layout pageContext={pageContext}>
@@ -34,12 +32,6 @@ function render(pageContext) {
     </html>`
   
   return {
-    documentHtml,
-    // We can return a `pageContext` promise
-    pageContext: (async () => {
-      return {
-        someAsyncProps: 42,
-      }
-    })(),
+    documentHtml
   }
 }

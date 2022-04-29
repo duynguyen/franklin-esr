@@ -1,4 +1,4 @@
-import ReactDOM from 'react-dom'
+import {hydrateRoot, createRoot} from 'react-dom/client'
 import { useClientRouter } from 'vite-plugin-ssr/client/router'
 import Layout from '../components/Layout'
 import { getPageTitle } from './getPageTitle'
@@ -14,10 +14,10 @@ const { hydrationPromise } = useClientRouter({
     )
     const container = document.getElementById('page-view')
     if (pageContext.isHydration) {
-      root = ReactDOM.hydrateRoot(container, page)
+      root = hydrateRoot(container, page)
     } else {
       if (!root) {
-        root = ReactDOM.createRoot(container)
+        root = createRoot(container)
       }
       root.render(page)
     }
