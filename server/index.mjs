@@ -27,21 +27,31 @@ async function startServer() {
   
   app.get('/api/model', async(req, res) => {
     const path = req.query.path
-    const endpoint = 'https://runtime.adobe.io/api/v1/web/bdelacre/default/ibiza-content-services/wknd/live/graphql';
-    const gql = `
-        {
-            pageByPath: documents(path: "${path}") {
-                header { id path role tags }
-                properties { schema data }
-                ... on Page { body { contentType content } }
-            }
-        }
-      `;
+    // const endpoint = 'https://runtime.adobe.io/api/v1/web/bdelacre/default/ibiza-content-services/wknd/live/graphql';
+    // const gql = `
+    //     {
+    //         pageByPath: documents(path: "${path}") {
+    //             header { id path role tags }
+    //             properties { schema data }
+    //             ... on Page { body { contentType content } }
+    //         }
+    //     }
+    //   `;
+    //
+    // const reqModel = await fetch(`${endpoint}?query=${gql}`)
+    // const model = await reqModel.json();
   
-    const reqModel = await fetch(`${endpoint}?query=${gql}`)
-    const model = await reqModel.json();
-    
-    res.json(model);
+    const reqModel = await fetch(`https://publish-p63943-e534691.adobeaemcloud.com${path}.model.json`)
+    if (reqModel.status !== 200) {
+      res.status(404).json({
+        error: `Model not found at path: ${path}`
+      });
+    }
+    else {
+      const model = await reqModel.json();
+  
+      res.json(model);
+    }
   })
   
   const renderPage = createPageRenderer({ viteDevServer, isProduction, root })

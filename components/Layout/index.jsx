@@ -1,5 +1,4 @@
 import React from 'react'
-import logo from './logo.svg'
 import { PageContextProvider } from '../../hooks/usePageContext'
 import './index.css'
 import Link from '../Link'
@@ -50,21 +49,6 @@ function Content({ children }) {
   )
 }
 
-function Logo() {
-  return (
-    <div
-      style={{
-        marginTop: 20,
-        marginBottom: 10,
-      }}
-    >
-      <a href="/">
-        <img alt="logo" src={logo} height={64} width={64} />
-      </a>
-    </div>
-  )
-}
-
 
 export default function Layout({ pageContext, children }) {
   return (
@@ -72,9 +56,8 @@ export default function Layout({ pageContext, children }) {
       <PageContextProvider pageContext={pageContext}>
         <Main>
           <Sidebar>
-            <Logo />
-            <Link href="/">Welcome</Link>
-            <Link href="/about">About</Link>
+            <Link href="/content/demo-site/en/home">Home</Link>
+            <Link href="/content/demo-site/en/article">Article</Link>
           </Sidebar>
           <Content>{children}</Content>
         </Main>

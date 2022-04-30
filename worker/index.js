@@ -38,26 +38,36 @@ async function handleAPIEvent(request, env) {
   const path = url.searchParams.get('path');
   
   if (url.pathname === '/api/model' && path) {
-    const query = async () => {
-      const endpoint = 'https://runtime.adobe.io/api/v1/web/bdelacre/default/ibiza-content-services/wknd/live/graphql';
-      const gql = `
-        {
-            pageByPath: documents(path: "${path}") {
-                header { id path role tags }
-                properties { schema data }
-                ... on Page { body { contentType content } }
-            }
-        }
-      `;
-    
-      const req = await fetch(`${endpoint}?query=${gql}`)
-      return await req.text();
-    };
+    // const query = async () => {
+    //   const endpoint = 'https://runtime.adobe.io/api/v1/web/bdelacre/default/ibiza-content-services/wknd/live/graphql';
+    //   const gql = `
+    //     {
+    //         pageByPath: documents(path: "${path}") {
+    //             header { id path role tags }
+    //             properties { schema data }
+    //             ... on Page { body { contentType content } }
+    //         }
+    //     }
+    //   `;
+    //
+    //   const req = await fetch(`${endpoint}?query=${gql}`)
+    //   return await req.text();
+    // };
+  
+    const authorization = request.headers.get('authorization');
     
     if (request.method === 'GET') {
-      let model = await env.MODELS.get(path);
+      const model = await env.MODELS.get(path);
+      
       if (!model) {
-        model = await query(path);
+        return new Response(JSON.stringify({
+          error: `Model not found at path: ${path}`
+        }), {
+          status: 404,
+          headers: {
+            'content-type': 'application/json'
+          }
+        });
       }
       
       return new Response(model, {
@@ -66,8 +76,26 @@ async function handleAPIEvent(request, env) {
         }
       });
     }
-    else if (request.method === 'PUT' && request.headers.get('x-api-secret') === '69d90f38-70b9-4937-a92c-4e5f5713a0b6') {
-      const model = await query(path);
+    else if (request.method === 'PUT' && authorization) {
+      const reqModel = await fetch(`https://author-p63943-e534691.adobeaemcloud.com${path}.model.json?configid=ims`, {
+        headers: {
+          authorization
+        }
+      });
+  
+      if (reqModel.status !== 200) {
+        return new Response(JSON.stringify({
+          error: reqModel.statusText
+        }), {
+          status: reqModel.status,
+          headers: {
+            'content-type': 'application/json'
+          }
+        });
+      }
+      
+      const model = await reqModel.text();
+      
       await env.MODELS.put(path, model);
   
       return new Response(model, {
