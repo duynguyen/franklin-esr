@@ -124,6 +124,11 @@ async function handleSsr(url) {
   } else {
     const { readable, writable } = new TransformStream();
     httpResponse.pipeToWebWritable(writable);
-    return new Response(readable);
+    return new Response(readable, {
+      headers: {
+        'content-encoding': 'gzip',
+        'content-type': 'text/html;charset=UTF-8'
+      }
+    });
   }
 }
