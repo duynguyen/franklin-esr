@@ -15,14 +15,9 @@ export async function onBeforeRender({routeParams, fetch = window.fetch, customP
   const origin = customParams.origin;
   const preview = customParams.preview;
   
-  const formData = new FormData();
-  formData.append('path', routeParams.path);
+  const previewParam = preview ? `&preview=${preview}` : '';
   
-  if (preview) {
-    formData.append('preview', preview);
-  }
-  
-  const req = await fetch(`${origin}/api/model?${new URLSearchParams(formData).toString()}`);
+  const req = await fetch(`${origin}/api/model?path=${routeParams.path}${previewParam}`);
   const model = await req.json();
   
   return {
