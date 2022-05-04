@@ -107,13 +107,14 @@ async function handleAPIEvent(request, env, url, previewKey) {
   //   return await req.text();
   // };
   
-  if (url.pathname === '/api/publish') {
-    if (request.method !== 'PUT') {
+  if (url.pathname === '/api/unpublish') {
+    if (request.method !== 'DELETE') {
       return new Response('Method not allowed', {
         status: 405
       });
     }
   
+    // TODO Check user publish permissions
     if (!authorization) {
       return new Response(JSON.stringify({
         error: `Unauthorized`
@@ -125,7 +126,30 @@ async function handleAPIEvent(request, env, url, previewKey) {
       });
     }
   
+    await env.MODELS.delete(`${modelPath}${previewKey}`);
+    await env.PAGES.delete(`${pagePath}${previewKey}`);
   
+    return new Response(`Page and model unpublished for path: ${path}`);
+  }
+  else if (url.pathname === '/api/publish') {
+    if (request.method !== 'PUT') {
+      return new Response('Method not allowed', {
+        status: 405
+      });
+    }
+  
+    // TODO Check user publish permissions
+    if (!authorization) {
+      return new Response(JSON.stringify({
+        error: `Unauthorized`
+      }), {
+        status: 401,
+        headers: {
+          'content-type': 'application/json'
+        }
+      });
+    }
+    
     const reqModel = await fetch(`https://author-p63943-e534691.adobeaemcloud.com${modelPath}?configid=ims`, {
       headers: {
         authorization
@@ -156,7 +180,7 @@ async function handleAPIEvent(request, env, url, previewKey) {
       return new Response("Internal Error", { status: 500 });
     }
     
-    await env.PAGES.put(`${previewKey}${pagePath}`, pageResponse.body);
+    await env.PAGES.put(`${pagePath}${previewKey}`, pageResponse.body);
   
     return new Response(`Page and model published for path: ${path}`);
   }
@@ -167,7 +191,7 @@ async function handleAPIEvent(request, env, url, previewKey) {
       });
     }
     
-    const model = await env.MODELS.get(`${previewKey}${modelPath}`);
+    const model = await env.MODELS.get(`${modelPath}${previewKey}`);
     
     if (model === null) {
       return new Response(JSON.stringify({
