@@ -50,7 +50,7 @@ async function handleFetchEvent(
     return new Response("Internal Error", { status: 500 });
   }
   
-  const pageBody = await env.PAGES.get(`${previewKey}${pagePath}`);
+  const pageBody = await env.PAGES.get(`${pagePath}${previewKey}`);
   
   if (pageBody === null) {
     // TODO Redirect to custom 404 page ?
@@ -169,7 +169,7 @@ async function handleAPIEvent(request, env, url, previewKey) {
   
     const model = await reqModel.text();
     
-    await env.MODELS.put(`${previewKey}${modelPath}`, model);
+    await env.MODELS.put(`${modelPath}${previewKey}`, model);
     
     const pageResponse = await handleSsr(`${url.origin}${path}`, {
       preview: previewKey,
