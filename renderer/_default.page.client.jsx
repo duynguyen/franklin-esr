@@ -6,7 +6,16 @@ import { getPageTitle } from './getPageTitle'
 let root
 const { hydrationPromise } = useClientRouter({
   render(pageContext) {
-    const { Page, pageProps } = pageContext
+    const { Page, pageProps, customParams } = pageContext
+    
+    if (!sessionStorage) {
+      alert('Please enable session storage in your browser settings for preview.')
+    }
+    const customParamsString = sessionStorage.getItem('customParams');
+    if (!customParamsString) {
+      sessionStorage.setItem('customParams', JSON.stringify(customParams))
+    }
+    
     const page = (
       <Layout pageContext={pageContext}>
         <Page {...pageProps} />

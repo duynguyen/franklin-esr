@@ -26,6 +26,7 @@ async function startServer() {
   }
   
   app.get('/api/model', async(req, res) => {
+    // TODO Mock UCM JSON
     const path = req.query.path
     // const endpoint = 'https://runtime.adobe.io/api/v1/web/bdelacre/default/ibiza-content-services/wknd/live/graphql';
     // const gql = `

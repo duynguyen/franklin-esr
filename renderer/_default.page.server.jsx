@@ -6,7 +6,7 @@ import { getPageTitle } from './getPageTitle'
 export { render }
 export { passToClient }
 
-const passToClient = ['pageProps', 'documentProps', 'someAsyncProps']
+const passToClient = ['pageProps', 'documentProps', 'customParams']
 
 function render(pageContext) {
   const { Page, pageProps } = pageContext
@@ -32,6 +32,9 @@ function render(pageContext) {
     </html>`
   
   return {
-    documentHtml
+    documentHtml,
+    pageContext: {
+      customParams: pageContext.customParams
+    }
   }
 }
