@@ -12,13 +12,16 @@ export async function onBeforeRender({routeParams, fetch = window.fetch, customP
     customParams = JSON.parse(sessionStorage.getItem('customParams'))
   }
   
+  let model = {};
   const origin = customParams.origin;
   const preview = customParams.preview;
   
   const previewParam = preview ? `&preview=${preview}` : '';
   
   const req = await fetch(`${origin}/api/model?path=${routeParams.path}${previewParam}`);
-  const model = await req.json();
+  if (req.ok) {
+    model = await req.json();
+  }
   
   return {
     pageContext: {
