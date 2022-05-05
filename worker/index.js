@@ -24,9 +24,7 @@ async function handleFetchEvent(
   const isLive = url.searchParams.has('live');
   
   if (isPreview && !previewKey) {
-    return new Response('Preview key is missing', {
-      status: 400
-    });
+    return new Response('Preview key is missing', {status: 400});
   }
   
   if (pathname.startsWith('/assets/') || pathname === '/robots.txt' || pathname === '/favicon.ico') {
@@ -54,9 +52,7 @@ async function handleFetchEvent(
   
   if (pageBody === null) {
     // TODO Redirect to custom 404 page ?
-    return new Response('Page not found', {
-      status: 404
-    });
+    return new Response('Page not found', {status: 404});
   }
   
   return new Response(pageBody, {
@@ -81,14 +77,7 @@ async function handleAPIEvent(request, env, url, previewKey) {
   const pagePath = `${path}.html`;
   
   if (!path) {
-    return new Response(JSON.stringify({
-      error: `Missing parameter "path"`
-    }), {
-      status: 400,
-      headers: {
-        'content-type': 'application/json'
-      }
-    });
+    return new Response(`Missing parameter "path"`, {status: 400});
   }
   
   // const query = async () => {
@@ -109,21 +98,12 @@ async function handleAPIEvent(request, env, url, previewKey) {
   
   if (url.pathname === '/api/unpublish') {
     if (request.method !== 'DELETE') {
-      return new Response('Method not allowed', {
-        status: 405
-      });
+      return new Response('Method not allowed', {status: 405});
     }
   
     // TODO Check user publish permissions
     if (!authorization) {
-      return new Response(JSON.stringify({
-        error: `Unauthorized`
-      }), {
-        status: 401,
-        headers: {
-          'content-type': 'application/json'
-        }
-      });
+      return new Response(`Unauthorized`, {status: 401});
     }
   
     await env.MODELS.delete(`${modelPath}${previewKey}`);
@@ -133,21 +113,12 @@ async function handleAPIEvent(request, env, url, previewKey) {
   }
   else if (url.pathname === '/api/publish') {
     if (request.method !== 'PUT') {
-      return new Response('Method not allowed', {
-        status: 405
-      });
+      return new Response('Method not allowed', {status: 405});
     }
   
     // TODO Check user publish permissions
     if (!authorization) {
-      return new Response(JSON.stringify({
-        error: `Unauthorized`
-      }), {
-        status: 401,
-        headers: {
-          'content-type': 'application/json'
-        }
-      });
+      return new Response(`Unauthorized`, {status: 401});
     }
     
     const reqModel = await fetch(`https://author-p63943-e534691.adobeaemcloud.com${modelPath}?configid=ims`, {
@@ -157,14 +128,7 @@ async function handleAPIEvent(request, env, url, previewKey) {
     });
   
     if (reqModel.status !== 200) {
-      return new Response(JSON.stringify({
-        error: reqModel.statusText
-      }), {
-        status: reqModel.status,
-        headers: {
-          'content-type': 'application/json'
-        }
-      });
+      return new Response(reqModel.statusText, {status: reqModel.status});
     }
   
     const model = await reqModel.text();
@@ -186,22 +150,13 @@ async function handleAPIEvent(request, env, url, previewKey) {
   }
   else if (url.pathname === '/api/model') {
     if (request.method !== 'GET') {
-      return new Response('Method not allowed', {
-        status: 405
-      });
+      return new Response('Method not allowed', {status: 405});
     }
     
     const model = await env.MODELS.get(`${modelPath}${previewKey}`);
     
     if (model === null) {
-      return new Response(JSON.stringify({
-        error: 'Model not found'
-      }), {
-        status: 404,
-        headers: {
-          'content-type': 'application/json',
-        }
-      });
+      return new Response('Model not found', {status: 404});
     }
   
     return new Response(model, {
