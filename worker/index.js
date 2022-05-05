@@ -133,7 +133,9 @@ async function handleAPIEvent(request, env, url, previewKey) {
   
     const model = await reqModel.text();
     
-    await env.MODELS.put(`${modelPath}${previewKey}`, model);
+    const options = previewKey ? {expirationTtl: 86400} : {};
+    
+    await env.MODELS.put(`${modelPath}${previewKey}`, model, options);
     
     const pageResponse = await handleSsr(`${url.origin}${path}`, {
       preview: previewKey,
@@ -144,7 +146,7 @@ async function handleAPIEvent(request, env, url, previewKey) {
       return new Response("Internal Error", { status: 500 });
     }
     
-    await env.PAGES.put(`${pagePath}${previewKey}`, pageResponse.body);
+    await env.PAGES.put(`${pagePath}${previewKey}`, pageResponse.body, options);
   
     return new Response(`Page and model published for path: ${path}`);
   }
