@@ -15,10 +15,12 @@ export async function onBeforeRender({routeParams, fetch = window.fetch, customP
   let model = {};
   const origin = customParams.origin;
   const preview = customParams.preview;
+  const live = customParams.live;
   
   const previewParam = preview ? `&preview=${preview}` : '';
+  const liveParam = live ? `&live` : '';
   
-  const req = await fetch(`${origin}/api/model?path=${routeParams.path}${previewParam}`);
+  const req = await fetch(`${origin}/api/model?path=${routeParams.path}${previewParam}${liveParam}`);
   if (req.ok) {
     model = await req.json();
   }

@@ -52,6 +52,7 @@ async function handleFetchEvent(
 
 async function handleAPIEvent(request, env, url, previewKey) {
   const path = url.searchParams.get('path');
+  const live = url.searchParams.has('live');
   const modelPath = `${path}.ucm.json`;
   
   if (request.method !== 'GET') {
@@ -65,7 +66,8 @@ async function handleAPIEvent(request, env, url, previewKey) {
   if (url.pathname === '/api/page') {
     const response = await handleSsr(`${url.origin}${path}`, {
       preview: previewKey,
-      origin: url.origin
+      origin: url.origin,
+      live
     });
   
     if (response === null) {
@@ -75,6 +77,20 @@ async function handleAPIEvent(request, env, url, previewKey) {
     return response;
   }
   else if (url.pathname === '/api/model') {
+    if (live) {
+      const reqModel = await fetch(`https://runtime.adobe.io/api/v1/web/bdelacre/default/ibiza-content-services/demo-site/${previewKey ? 'preview' : 'live'}/documents${path}.json`)
+      if (!reqModel.ok) {
+        return new Response(reqModel.statusText, {status: reqModel.status});
+      }
+  
+      return new Response(await reqModel.text(), {
+        headers: {
+          'content-type': 'application/json',
+          'x-cache': 'miss'
+        }
+      });
+    }
+    
     const model = await env.MODELS.get(`${modelPath}${previewKey}`);
     
     if (model === null) {
@@ -83,7 +99,8 @@ async function handleAPIEvent(request, env, url, previewKey) {
   
     return new Response(model, {
       headers: {
-        'content-type': 'application/json'
+        'content-type': 'application/json',
+        'x-cache': 'hit'
       }
     });
   }
