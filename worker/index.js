@@ -21,7 +21,6 @@ async function handleFetchEvent(
   const pathname = url.pathname;
   const isPreview = url.searchParams.has('preview');
   const previewKey = url.searchParams.get('preview') ?? '';
-  const isLive = url.searchParams.has('live');
   
   if (isPreview && !previewKey) {
     return new Response('Preview key is missing', {status: 400});
@@ -35,20 +34,7 @@ async function handleFetchEvent(
     return handleAPIEvent(request, env, url, previewKey);
   }
   
-  const pagePath = `${pathname}.html`;
-  
-  if (isLive) {
-    const response = await handleSsr(request.url, {
-      preview: previewKey,
-      origin: url.origin,
-      live: isLive
-    });
-    if (response !== null) return response;
-
-    return new Response("Internal Error", { status: 500 });
-  }
-  
-  const pageBody = await env.PAGES.get(`${pagePath}${previewKey}`);
+  const pageBody = await env.PAGES.get(`${pathname}.html${previewKey}`);
   
   if (pageBody === null) {
     // TODO Redirect to custom 404 page ?
@@ -62,99 +48,33 @@ async function handleFetchEvent(
       'x-cache': 'hit'
     }
   });
-  
-  // Fallback and render
-  // const response = await handleSsr(request.url);
-  // if (response !== null) return response;
-  //
-  // return new Response("Internal Error", { status: 500 });
 }
 
 async function handleAPIEvent(request, env, url, previewKey) {
   const path = url.searchParams.get('path');
-  const authorization = request.headers.get('authorization');
   const modelPath = `${path}.ucm.json`;
-  const pagePath = `${path}.html`;
+  
+  if (request.method !== 'GET') {
+    return new Response('Method not allowed', {status: 405});
+  }
   
   if (!path) {
     return new Response(`Missing parameter "path"`, {status: 400});
   }
   
-  // const query = async () => {
-  //   const endpoint = 'https://runtime.adobe.io/api/v1/web/bdelacre/default/ibiza-content-services/wknd/live/graphql';
-  //   const gql = `
-  //     {
-  //         pageByPath: documents(path: "${path}") {
-  //             header { id path role tags }
-  //             properties { schema data }
-  //             ... on Page { body { contentType content } }
-  //         }
-  //     }
-  //   `;
-  //
-  //   const req = await fetch(`${endpoint}?query=${gql}`)
-  //   return await req.text();
-  // };
-  
-  if (url.pathname === '/api/unpublish') {
-    if (request.method !== 'DELETE') {
-      return new Response('Method not allowed', {status: 405});
-    }
-  
-    // TODO Check user publish permissions
-    if (!authorization) {
-      return new Response(`Unauthorized`, {status: 401});
-    }
-  
-    await env.MODELS.delete(`${modelPath}${previewKey}`);
-    await env.PAGES.delete(`${pagePath}${previewKey}`);
-  
-    return new Response(`Page and model unpublished for path: ${path}`);
-  }
-  else if (url.pathname === '/api/publish') {
-    if (request.method !== 'PUT') {
-      return new Response('Method not allowed', {status: 405});
-    }
-  
-    // TODO Check user publish permissions
-    if (!authorization) {
-      return new Response(`Unauthorized`, {status: 401});
-    }
-    
-    const reqModel = await fetch(`https://author-p63943-e534691.adobeaemcloud.com${modelPath}?configid=ims`, {
-      headers: {
-        authorization
-      }
-    });
-  
-    if (reqModel.status !== 200) {
-      return new Response(reqModel.statusText, {status: reqModel.status});
-    }
-  
-    const model = await reqModel.text();
-    
-    const options = previewKey ? {expirationTtl: 86400} : {};
-    
-    await env.MODELS.put(`${modelPath}${previewKey}`, model, options);
-    
-    const pageResponse = await handleSsr(`${url.origin}${path}`, {
+  if (url.pathname === '/api/page') {
+    const response = await handleSsr(`${url.origin}${path}`, {
       preview: previewKey,
       origin: url.origin
-    })
-    
-    if (pageResponse === null) {
-      return new Response("Internal Error", { status: 500 });
+    });
+  
+    if (response === null) {
+      return new Response("Page rendering failed", { status: 500 });
     }
     
-    await env.PAGES.put(`${pagePath}${previewKey}`, pageResponse.body, options);
-  
-    return new Response(`Page and model published for path: ${path}`);
+    return response;
   }
   else if (url.pathname === '/api/model') {
-    if (request.method !== 'GET') {
-      return new Response('Method not allowed', {status: 405});
-    }
-    
     const model = await env.MODELS.get(`${modelPath}${previewKey}`);
     
     if (model === null) {
@@ -166,29 +86,6 @@ async function handleAPIEvent(request, env, url, previewKey) {
         'content-type': 'application/json'
       }
     });
-  
-    // // Fallback to publish
-    // const reqModel = await fetch(`https://publish-p63943-e534691.adobeaemcloud.com${modelPath}`);
-    //
-    // if (reqModel.status !== 200) {
-    //   return new Response(JSON.stringify({
-    //     error: reqModel.statusText
-    //   }), {
-    //     status: reqModel.status,
-    //     headers: {
-    //       'content-type': 'application/json'
-    //     }
-    //   });
-    // }
-    //
-    // model = await reqModel.text();
-    //
-    // return new Response(model, {
-    //   headers: {
-    //     'content-type': 'application/json',
-    //     'x-cache': 'miss'
-    //   }
-    // });
   }
   
   return new Response('Nothing here', { status: 404 })
