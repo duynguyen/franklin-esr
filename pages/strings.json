@@ -1,0 +1,10 @@
+{
+  "teaserDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+  "teaserTitle": "This is a Teaser",
+  "teaserPreTitle": "Teasers",
+  "teaserButtons": [
+    {"title": "First Action"},
+    {"title": "Second Action"}
+  ],
+  "contentText": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis ac pulvinar erat. In nunc orci, tincidunt a enim eu, malesuada pharetra felis. Suspendisse ut lectus id lorem vulputate scelerisque aliquam vel arcu. Aliquam elementum purus ut ornare aliquam. Phasellus rhoncus auctor velit. Etiam sollicitudin enim in tincidunt dignissim. In lacinia vulputate varius. Curabitur et accumsan justo. Pellentesque tristique malesuada risus vitae faucibus. Integer commodo dui nisl, sit amet viverra velit dapibus a.\n\n"
+}

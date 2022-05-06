@@ -1,0 +1,16 @@
+.image-container {
+    overflow: hidden;
+}
+
+.image {
+    object-fit: contain;
+    display: block;
+    height: 100%;
+    width: 100%;
+}
+
+.caption {
+    color: #607d8b;
+    font-size: .625em;
+    margin-top: 1rem;
+}

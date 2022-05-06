@@ -1,0 +1,9 @@
+.header {
+    height: 85px;
+    padding: 25px 110px;
+    width: 100%;
+    border-bottom: 2px solid rgb(236, 239, 241);
+    gap: 100px;
+    display: flex;
+    flex-direction: row;
+}
