@@ -9,6 +9,30 @@ const isProduction = process.env.NODE_ENV === 'production'
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const root = `${__dirname}/..`
 
+const ucmQuery = `
+      query GetUCMDocument($path: String!) {
+        documents(resolve: true, path: $path) {
+          header {
+            id
+            path
+            role
+            generator
+            filename
+          }
+          properties {
+            schema
+            data
+          }
+          ... on Page {
+            body {
+              contentType
+              content
+            }
+          }
+        }
+      }
+    `
+
 startServer()
 
 async function startServer() {
@@ -24,20 +48,35 @@ async function startServer() {
     })
     app.use(viteDevServer.middlewares)
   }
-  
-  app.get('/api/model', async(req, res) => {
+
+  app.get('/api/model', async (req, res) => {
     const path = req.query.path
     const preview = req.query.preview
-  
-    const reqModel = await fetch(`https://runtime.adobe.io/api/v1/web/bdelacre/default/ibiza-content-services/demo-site/${preview ? 'preview' : 'live'}/documents${path}.json`)
-    
+
+    const reqModel = await fetch(
+        `https://runtime.adobe.io/api/v1/web/bdelacre/default/ibiza-content-services/demo-site/${
+            preview ? 'preview' : 'live'
+        }/graphql`,
+        {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                query: ucmQuery,
+                variables: {
+                    path: path
+                }
+            })
+        }
+    );
+
     if (!reqModel.ok) {
       res.status(reqModel.status).send(reqModel.statusText)
     }
     else {
       const model = await reqModel.json();
-  
-      res.json(model);
+      res.json(model.data.documents[0]);
     }
   })
   

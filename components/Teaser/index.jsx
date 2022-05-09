@@ -2,7 +2,7 @@ import styles from "./index.module.css"
 import altStyles from "./teaser.module.css"
 
 export default function Teaser(props) {
-  const {pretitle, title, description, heroImageUrl, buttons, altStyle = true} = props
+  const {pretitle, title, description, imageUrl, buttons, altStyle = true} = props
 
   const customStyle = altStyle ? altStyles : null
 
@@ -10,8 +10,13 @@ export default function Teaser(props) {
     return customStyle ?? defaultStyle
   }
 
+  const imgStrSetOptions = ['320', '480', '600', '800', '1024', '1200', '1600']
+  const getImgSrcSet = (path) => {
+    return imgStrSetOptions.map(size => { return path + `?wid=`+  size + ' ' + size + 'w' }).join(', ')
+  }
+
   return <div className={selectClassName(styles.teaserContainer, customStyle?.["teaserContainer"])}>
-    <img src={heroImageUrl} className={selectClassName(styles.heroImage, customStyle?.["heroImage"])}/>
+    <img src={imageUrl} srcSet={getImgSrcSet(imageUrl)} className={selectClassName(styles.heroImage, customStyle?.["heroImage"])}/>
     <div className={selectClassName(styles.contentContainer, customStyle?.["contentContainer"])}>
       <div className={selectClassName(styles.teaserTextContainer, customStyle?.["teaserTextContainer"])}>
         <p className={selectClassName(styles.teaserPreTitle, customStyle?.["teaserPreTitle"])}>{pretitle}</p>
