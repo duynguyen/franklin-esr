@@ -83,11 +83,11 @@ async function handleAPIEvent(request, env, url, previewKey) {
     return new Response('Method not allowed', {status: 405});
   }
   
-  if (!path) {
-    return new Response(`Missing parameter "path"`, {status: 400});
-  }
-  
   if (url.pathname === '/api/page') {
+    if (!path) {
+      return new Response(`Missing parameter "path"`, {status: 400});
+    }
+    
     const response = await handleSsr(`${url.origin}${path}`, {
       preview: previewKey,
       origin: url.origin,
@@ -100,11 +100,29 @@ async function handleAPIEvent(request, env, url, previewKey) {
     
     return response;
   }
+  else if (url.pathname === '/api/css') {
+    let CSS = ''
+    const reqCSS = await fetch('https://raw.githubusercontent.com/icaraps/cdn/main/vars.css');
+    
+    if (reqCSS.ok) {
+      CSS = await reqCSS.text()
+    }
+    
+    return new Response(CSS, {
+      headers: {
+        'content-type': 'text/css'
+      }
+    });
+  }
   else if (url.pathname === '/api/model') {
+    if (!path) {
+      return new Response(`Missing parameter "path"`, {status: 400});
+    }
+    
     if (live) {
       const reqModel = await fetch(
           `https://runtime.adobe.io/api/v1/web/bdelacre/default/ibiza-content-services/demo-site/${
-              preview ? 'preview' : 'live'
+              previewKey ? 'preview' : 'live'
           }/graphql`,
           {
               method: 'POST',
@@ -125,7 +143,9 @@ async function handleAPIEvent(request, env, url, previewKey) {
       }
   
       const model = await reqModel.json();
-      return new Response(model?.data?.documents[0], {
+      const doc = model?.data?.documents[0];
+      
+      return new Response(JSON.stringify(doc ? doc : {}), {
           headers: {
               'content-type': 'application/json',
               'x-cache': 'miss'

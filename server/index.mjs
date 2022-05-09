@@ -48,7 +48,11 @@ async function startServer() {
     })
     app.use(viteDevServer.middlewares)
   }
-
+  
+  app.get('/api/css', async (req, res) => {
+    res.sendFile(`${__dirname}/vars.css}`);
+  });
+  
   app.get('/api/model', async (req, res) => {
     const path = req.query.path
     const preview = req.query.preview

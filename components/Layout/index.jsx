@@ -31,6 +31,7 @@ export default function Layout({ pageContext, children }) {
   return (
     <React.StrictMode>
       <PageContextProvider pageContext={pageContext}>
+        <link rel="stylesheet" type="text/css" href="/api/css"/>
         <Header>
           <img src={logo} style={{height: "80%"}} />
           <Nav items={[
