@@ -2,6 +2,30 @@ import { createPageRenderer } from "vite-plugin-ssr";
 // `importBuild.js` enables us to bundle our worker code into a single file, see https://vite-plugin-ssr.com/cloudflare-workers and https://vite-plugin-ssr.com/importBuild.js
 import "../dist/server/importBuild.js";
 
+const ucmQuery = `
+      query GetUCMDocument($path: String!) {
+        documents(resolve: true, path: $path) {
+          header {
+            id
+            path
+            role
+            generator
+            filename
+          }
+          properties {
+            schema
+            data
+          }
+          ... on Page {
+            body {
+              contentType
+              content
+            }
+          }
+        }
+      }
+    `;
+
 export default {
   async fetch(request, env) {
     try {
@@ -78,16 +102,34 @@ async function handleAPIEvent(request, env, url, previewKey) {
   }
   else if (url.pathname === '/api/model') {
     if (live) {
-      const reqModel = await fetch(`https://runtime.adobe.io/api/v1/web/bdelacre/default/ibiza-content-services/demo-site/${previewKey ? 'preview' : 'live'}/documents${path}.json`)
+      const reqModel = await fetch(
+          `https://runtime.adobe.io/api/v1/web/bdelacre/default/ibiza-content-services/demo-site/${
+              preview ? 'preview' : 'live'
+          }/graphql`,
+          {
+              method: 'POST',
+              headers: {
+                  'Content-Type': 'application/json'
+              },
+              body: JSON.stringify({
+                  query: ucmQuery,
+                  variables: {
+                      path: path
+                  }
+              })
+          }
+      );
+      
       if (!reqModel.ok) {
         return new Response(reqModel.statusText, {status: reqModel.status});
       }
   
-      return new Response(await reqModel.text(), {
-        headers: {
-          'content-type': 'application/json',
-          'x-cache': 'miss'
-        }
+      const model = await reqModel.json();
+      return new Response(model?.data?.documents[0], {
+          headers: {
+              'content-type': 'application/json',
+              'x-cache': 'miss'
+          }
       });
     }
     

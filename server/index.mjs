@@ -76,7 +76,7 @@ async function startServer() {
     }
     else {
       const model = await reqModel.json();
-      res.json(model.data.documents[0]);
+      res.json(model?.data?.documents[0]);
     }
   })
   
