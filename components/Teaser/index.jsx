@@ -12,7 +12,10 @@ export default function Teaser(props) {
   }
 
   return <div className={selectedStyles.teaserContainer} id={id}>
-    <img alt="" src={imageUrl} srcSet={getImgSrcSet(imageUrl)} className={selectedStyles.heroImage}/>
+    <picture>
+      <source srcSet={getImgSrcSet(imageUrl)} type="image/webp"/>
+      <img alt="" src={`${imageUrl}?wid=${useAltStyles ? '480' : '1024'}`} className={selectedStyles.heroImage}/>
+    </picture>
     <div className={selectedStyles.contentContainer}>
       <div className={selectedStyles.teaserTextContainer}>
         <p className={selectedStyles.teaserPreTitle}>{pretitle}</p>
