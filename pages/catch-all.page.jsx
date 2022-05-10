@@ -5,8 +5,8 @@ import Title from "../components/Title";
 import Separator from "../components/Separator";
 import Flex from "../components/Grid/Flex";
 
-export default function Page({model}) {
-  if (model?.header?.path === '/content/demo-site/en/home') {
+export default function Page({ model }) {
+  if (model?.header?.path.match('\/content\/demo-site\/[a-z]{2}\/home')) {
     const teaserId = model.body.content.children[0].children[0].children[1].children[0].props.self.id;
     const teaserTitle = model.body.content.children[0].children[0].children[1].children[0].props.self.jcr_title;
     const heroTeaserImage = `https://smartimaging.scene7.com/is/image/` + model.body.content.children[0].children[0].children[1].children[0].props.resolved.fileReference.document.properties.data.metadata['dam:scene7File'];
