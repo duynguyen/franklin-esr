@@ -102,27 +102,38 @@ async function handleAPIEvent(request, env, url, previewKey) {
   }
   
   if (url.pathname === '/api/css') {
-    const defaultVars = () => env.ASSETS.fetch(new Request(`${url.origin}/vars.css`))
+    const defaultHeaders = {
+      'content-type': 'text/css;charset=utf-8',
+      'content-encoding': 'gzip'
+    };
+    
+    const defaultResponse = async () => {
+      const reqDefaultCSS = await env.ASSETS.fetch(new Request(`${url.origin}/vars.css`));
+      
+      const defaultCSS = await reqDefaultCSS.text();
+      
+      return new Response(defaultCSS, {
+        headers: defaultHeaders
+      })
+    }
     
     if (!project) {
-      return defaultVars()
+      return await defaultResponse()
     }
     
     const reqCSS = await fetch(`${project}/vars.css`);
     if (!reqCSS.ok) {
-      return defaultVars()
+      return await defaultResponse()
     }
   
     const CSS = await reqCSS.text();
     
     if (!CSS) {
-      return defaultVars()
+      return await defaultResponse()
     }
     
     return new Response(CSS, {
-      headers: {
-        'content-type': 'text/css'
-      }
+      headers: defaultHeaders
     });
   }
   else if (url.pathname === '/api/model') {
