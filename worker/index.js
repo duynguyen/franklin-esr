@@ -52,7 +52,7 @@ async function handleFetchEvent(
     return new Response('Preview key is missing', {status: 400});
   }
   
-  if (pathname.startsWith('/assets/') || pathname === '/robots.txt' || pathname === '/favicon.ico') {
+  if (pathname.startsWith('/assets/') || pathname === '/robots.txt' || pathname === '/favicon.ico' || pathname === '/vars.css') {
     return env.ASSETS.fetch(request);
   }
   
