@@ -3,7 +3,6 @@ import { PageContextProvider } from '../../hooks/usePageContext'
 import './index.css'
 import Header from "../Header";
 import Image from "../Image";
-import logo from "../../public/logo.png"
 import Nav from "../Nav";
 import SearchBar from "../SearchBar";
 import Footer from "../Footer";
@@ -37,7 +36,7 @@ export default function Layout({ pageContext, children }) {
       <PageContextProvider pageContext={pageContext}>
         <link rel="stylesheet" type="text/css" href={`/api/css?project=${customParams.project}`}/>
         <Header>
-          <img alt="" src={logo} style={{height: "80%"}} />
+          <img alt="" src="/logo.png" style={{height: "80%"}} />
           <Nav items={[
             {name: "Home", link: "/content/demo-site/en/home", children: []},
             {name: "Article", link: "article", children: [
@@ -55,7 +54,7 @@ export default function Layout({ pageContext, children }) {
           {children}
         </Main>
         <Footer>
-          <Image src={logo} style={{height: "90%"}} />
+          <Image src="/logo.png" style={{height: "90%"}} />
           <span style={{fontSize: "10px", color: `black`}}>© COMPANY NAME ADDRESS AVE, CITY NAME, STATE ZIP</span>
           <Flex gap={20} direction="row">
             <a href="#">Terms of Use</a>
