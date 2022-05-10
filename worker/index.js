@@ -44,7 +44,7 @@ async function handleFetchEvent(
   const url = new URL(request.url);
   const pathname = url.pathname;
   const live = url.searchParams.has('live');
-  const project = url.searchParams.get('project');
+  const project = url.searchParams.get('project') ?? '';
   const isPreview = url.searchParams.has('preview');
   const previewKey = url.searchParams.get('preview') ?? '';
   
