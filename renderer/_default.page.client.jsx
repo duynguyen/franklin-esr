@@ -10,6 +10,8 @@ const { hydrationPromise } = useClientRouter({
     
     const customParamsString = sessionStorage.getItem('customParams');
     if (!customParamsString) {
+      // Use cached model for CSR
+      customParams.live = undefined;
       sessionStorage.setItem('customParams', JSON.stringify(customParams))
     }
     
