@@ -6,7 +6,8 @@ export default function Teaser(props) {
   
   const selectedStyles = useAltStyles ? altStyles : defaultStyles;
 
-  const imgStrSetOptions = ['320', '480', '600', '800', '1024', '1200', '1600']
+  // const imgStrSetOptions = ['320', '480', '600', '800', '1024', '1200', '1600']
+  const imgStrSetOptions = ['320', '480', '600', '800']
   const getImgSrcSet = (path) => {
     return imgStrSetOptions.map(size => { return path + `?wid=`+  size + ' ' + size + 'w' }).join(', ')
   }
