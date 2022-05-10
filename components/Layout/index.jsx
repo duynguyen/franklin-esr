@@ -36,7 +36,7 @@ export default function Layout({ pageContext, children }) {
       <PageContextProvider pageContext={pageContext}>
         <link rel="stylesheet" type="text/css" href={`/api/css?project=${customParams.project}`}/>
         <Header>
-          <img alt="" src="/logo.webp" loading="eager" width="296" height="68" style={{height: "80%"}} />
+          <img alt="" src="/logo.webp" loading="eager" style={{height: "80%"}} />
           <Nav items={[
             {name: "Home", link: "/content/demo-site/en/home", children: []},
             {name: "Article", link: "article", children: [
