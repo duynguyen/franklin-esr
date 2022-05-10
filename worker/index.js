@@ -52,7 +52,7 @@ async function handleFetchEvent(
     return new Response('Preview key is missing', {status: 400});
   }
   
-  if (pathname.startsWith('/assets/') || pathname === '/robots.txt' || pathname === '/favicon.ico' || pathname === '/vars.css') {
+  if (pathname.startsWith('/assets/') || pathname === '/robots.txt' || pathname === '/favicon.ico') {
     return env.ASSETS.fetch(request);
   }
   
@@ -108,10 +108,7 @@ async function handleAPIEvent(request, env, url, previewKey) {
     };
     
     const defaultResponse = async () => {
-      const reqDefaultCSS = await env.ASSETS.fetch(new Request(`${url.origin}/vars.css`));
-      
-      const defaultCSS = await reqDefaultCSS.text();
-      
+      const defaultCSS = await env.CSS.get('vars.css');
       return new Response(defaultCSS, {
         headers: defaultHeaders
       })

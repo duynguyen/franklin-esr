@@ -3,7 +3,7 @@
     "dev": "node ./server/index.mjs",
     "prod": "npm run build",
     "serve": "cross-env NODE_ENV=production node ./server/index.mjs",
-    "serve:worker": "npx wrangler@beta pages dev ./dist/client/ --kv MODELS PAGES",
+    "serve:worker": "npx wrangler@beta pages dev ./dist/client/ --kv MODELS PAGES CSS",
     "build": "npm run build:client && npm run build:worker",
     "build:client": "vite build && vite build --ssr",
     "build:worker": "node -r esbuild-register build-worker.js"
