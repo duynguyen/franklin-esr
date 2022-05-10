@@ -1,30 +1,26 @@
-import styles from "./index.module.css"
-import altStyles from "./teaser.module.css"
+import defaultStyles from "./default-style.module.css"
+import altStyles from "./alt-style.module.css"
 
 export default function Teaser(props) {
-  const {pretitle, title, description, imageUrl, buttons, altStyle = true} = props
-
-  const customStyle = altStyle ? altStyles : null
-
-  const selectClassName = (defaultStyle, customStyle) => {
-    return customStyle ?? defaultStyle
-  }
+  const {id, pretitle, title, description, imageUrl, buttons, useAltStyles = true} = props
+  
+  const selectedStyles = useAltStyles ? altStyles : defaultStyles;
 
   const imgStrSetOptions = ['320', '480', '600', '800', '1024', '1200', '1600']
   const getImgSrcSet = (path) => {
     return imgStrSetOptions.map(size => { return path + `?wid=`+  size + ' ' + size + 'w' }).join(', ')
   }
 
-  return <div className={selectClassName(styles.teaserContainer, customStyle?.["teaserContainer"])}>
-    <img src={imageUrl} srcSet={getImgSrcSet(imageUrl)} className={selectClassName(styles.heroImage, customStyle?.["heroImage"])}/>
-    <div className={selectClassName(styles.contentContainer, customStyle?.["contentContainer"])}>
-      <div className={selectClassName(styles.teaserTextContainer, customStyle?.["teaserTextContainer"])}>
-        <p className={selectClassName(styles.teaserPreTitle, customStyle?.["teaserPreTitle"])}>{pretitle}</p>
-        <h3 className={selectClassName(styles.teaserTitle, customStyle?.["teaserTitle"])}>{title}</h3>
-        <p className={selectClassName(styles.teaserParagraph, customStyle?.["teaserParagraph"])}>{description}</p>
+  return <div className={selectedStyles.teaserContainer} id={id}>
+    <img src={imageUrl} srcSet={getImgSrcSet(imageUrl)} className={selectedStyles.heroImage}/>
+    <div className={selectedStyles.contentContainer}>
+      <div className={selectedStyles.teaserTextContainer}>
+        <p className={selectedStyles.teaserPreTitle}>{pretitle}</p>
+        <h3 className={selectedStyles.teaserTitle}>{title}</h3>
+        <p className={selectedStyles.teaserParagraph}>{description}</p>
         <div>
           { buttons?.map((b, i) => (
-            <button key={b.title} className={selectClassName(styles.teaserButton, customStyle?.["teaserButton"])} id={`button-${i}`}>{b.title}</button>)) }
+            <button key={i} className={selectedStyles.teaserButton}>{b.title}</button>)) }
         </div>
       </div>
     </div>

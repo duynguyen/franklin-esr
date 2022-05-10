@@ -9,6 +9,7 @@ function NavDropdown({navItem}) {
     className={[styles["nav-item"], styles["nav-dropdown-item"]].join(" ")}
     onMouseEnter={() => setExpanded(true)}
     onMouseLeave={() => setExpanded(false)}
+    key={navItem.name}
   >
     <Link href={navItem.link}>{navItem.name}</Link>
     <ul style={{visibility: expanded ? "initial" : "collapse"}} className={styles["nav-dropdown"]}>
@@ -25,7 +26,7 @@ export default function Nav({items}) {
   return <ul className={styles["nav-group"]}>
     {items.map(i =>
       i.children.length > 0 ?
-        <NavDropdown key={i} navItem={i}/> :
+        <NavDropdown navItem={i}/> :
         <li className={styles["nav-item"]} key={i}>
           <Link href={i.link}>{i.name}</Link>
         </li>

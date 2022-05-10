@@ -43,6 +43,8 @@ async function handleFetchEvent(
 ) {
   const url = new URL(request.url);
   const pathname = url.pathname;
+  const live = url.searchParams.has('live');
+  const project = url.searchParams.get('project');
   const isPreview = url.searchParams.has('preview');
   const previewKey = url.searchParams.get('preview') ?? '';
   
@@ -58,14 +60,29 @@ async function handleFetchEvent(
     return handleAPIEvent(request, env, url, previewKey);
   }
   
-  const pageBody = await env.PAGES.get(`${pathname}.html${previewKey}`);
+  if (live) {
+    const response = await handleSsr(`${url.origin}${pathname}`, {
+      preview: previewKey,
+      origin: url.origin,
+      live,
+      project
+    });
   
-  if (pageBody === null) {
+    if (response === null) {
+      return new Response("Page rendering failed", { status: 500 });
+    }
+  
+    return response;
+  }
+  
+  const page = await env.PAGES.get(`${pathname}.html${previewKey}`);
+  
+  if (page === null) {
     // TODO Redirect to custom 404 page ?
     return new Response('Page not found', {status: 404});
   }
   
-  return new Response(pageBody, {
+  return new Response(page, {
     headers: {
       'content-encoding': 'gzip',
       'content-type': 'text/html;charset=UTF-8',
@@ -76,6 +93,7 @@ async function handleFetchEvent(
 
 async function handleAPIEvent(request, env, url, previewKey) {
   const path = url.searchParams.get('path');
+  const project = url.searchParams.get('project');
   const live = url.searchParams.has('live');
   const modelPath = `${path}.ucm.json`;
   
@@ -83,29 +101,22 @@ async function handleAPIEvent(request, env, url, previewKey) {
     return new Response('Method not allowed', {status: 405});
   }
   
-  if (url.pathname === '/api/page') {
-    if (!path) {
-      return new Response(`Missing parameter "path"`, {status: 400});
+  if (url.pathname === '/api/css') {
+    const defaultVars = () => env.ASSETS.fetch(new Request(`${url.origin}/vars.css`))
+    
+    if (!project) {
+      return defaultVars()
     }
     
-    const response = await handleSsr(`${url.origin}${path}`, {
-      preview: previewKey,
-      origin: url.origin,
-      live
-    });
+    const reqCSS = await fetch(`${project}/vars.css`);
+    if (!reqCSS.ok) {
+      return defaultVars()
+    }
   
-    if (response === null) {
-      return new Response("Page rendering failed", { status: 500 });
-    }
+    const CSS = await reqCSS.text();
     
-    return response;
-  }
-  else if (url.pathname === '/api/css') {
-    let CSS = ''
-    const reqCSS = await fetch('https://raw.githubusercontent.com/icaraps/cdn/main/vars.css');
-    
-    if (reqCSS.ok) {
-      CSS = await reqCSS.text()
+    if (!CSS) {
+      return defaultVars()
     }
     
     return new Response(CSS, {

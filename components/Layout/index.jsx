@@ -28,10 +28,14 @@ function Main({ children }) {
 }
 
 export default function Layout({ pageContext, children }) {
+  let customParams = pageContext?.customParams;
+  if (!import.meta.env.SSR) {
+    customParams = JSON.parse(sessionStorage.getItem('customParams'))
+  }
   return (
     <React.StrictMode>
       <PageContextProvider pageContext={pageContext}>
-        <link rel="stylesheet" type="text/css" href="/api/css"/>
+        <link rel="stylesheet" type="text/css" href={`/api/css?project=${customParams.project}`}/>
         <Header>
           <img src={logo} style={{height: "80%"}} />
           <Nav items={[

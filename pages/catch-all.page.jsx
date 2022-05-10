@@ -14,7 +14,7 @@ export default function Page({model}) {
     return (
       <>
         <Teaser title={teaserTitle} pretitle={strings.teaserPreTitle} description={strings.teaserDescription}
-                imageUrl={heroTeaserImage} buttons={strings.teaserButtons} altStyle={false} />
+                imageUrl={heroTeaserImage} buttons={strings.teaserButtons} useAltStyles={false} />
         <Container>
           <Title>Home</Title>
           <p>{strings.contentText}</p>

@@ -50,7 +50,7 @@ async function startServer() {
   }
   
   app.get('/api/css', async (req, res) => {
-    res.sendFile(`${__dirname}/vars.css}`);
+    res.sendFile(`${process.cwd()}/public/vars.css`);
   });
   
   app.get('/api/model', async (req, res) => {
