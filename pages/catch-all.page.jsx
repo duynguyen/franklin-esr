@@ -7,13 +7,14 @@ import Flex from "../components/Grid/Flex";
 
 export default function Page({model}) {
   if (model?.header?.path === '/content/demo-site/en/home') {
+    const teaserId = model.body.content.children[0].children[0].children[1].children[0].props.self.id;
     const teaserTitle = model.body.content.children[0].children[0].children[1].children[0].props.self.jcr_title;
     const heroTeaserImage = `https://smartimaging.scene7.com/is/image/` + model.body.content.children[0].children[0].children[1].children[0].props.resolved.fileReference.document.properties.data.metadata['dam:scene7File'];
     const teaserImage = `https://smartimaging.scene7.com/is/image/` + model.body.content.children[0].children[0].children[2].children[3].props.resolved.fileReference.document.properties.data.metadata['dam:scene7File'];
 
     return (
       <>
-        <Teaser title={teaserTitle} pretitle={strings.teaserPreTitle} description={strings.teaserDescription}
+        <Teaser id={teaserId} title={teaserTitle} pretitle={strings.teaserPreTitle} description={strings.teaserDescription}
                 imageUrl={heroTeaserImage} buttons={strings.teaserButtons} useAltStyles={false} />
         <Container>
           <Title>Home</Title>
