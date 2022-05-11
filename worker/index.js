@@ -109,6 +109,10 @@ async function handleAPIEvent(request, env, url, previewKey) {
     
     const defaultResponse = async () => {
       const defaultCSS = await env.CSS.get('vars.css');
+      if (!defaultCSS) {
+        return env.ASSETS.fetch(`${url.origin}/vars.css`)
+      }
+      
       return new Response(defaultCSS, {
         headers: defaultHeaders
       })
@@ -118,15 +122,15 @@ async function handleAPIEvent(request, env, url, previewKey) {
       return await defaultResponse()
     }
   
-    let url;
+    let varsURL;
     try {
-      url = new URL(`${project}/vars.css`);
+      varsURL = new URL(`${project}/vars.css`);
     }
     catch (e) {
       return await defaultResponse()
     }
     
-    const reqCSS = await fetch(url);
+    const reqCSS = await fetch(varsURL);
     if (!reqCSS.ok) {
       return await defaultResponse()
     }
