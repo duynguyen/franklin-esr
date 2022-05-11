@@ -11,8 +11,10 @@ const getImgSrcSet = (path) => {
 }
 
 export default function Teaser(props) {
-  const {buttons, useAltStyles = true} = props
+  const {buttons} = props
   const {id, pretitle, jcr_title, jcr_description, textIsRich} = props.self
+
+  const useAltStyles = (id == 'custom-teaser' ? false : true)
   
   const imageUrl = baseUrl + props.resolved.fileReference.document.properties.data.metadata['dam:scene7File']
 
@@ -29,11 +31,14 @@ export default function Teaser(props) {
         {useAltStyles ? <h3 className={selectedStyles.teaserTitle}>{jcr_title}</h3> : <h1 className={selectedStyles.teaserTitle}>{jcr_title}</h1>}
   
         { !textIsRich && <p className={selectedStyles.teaserParagraph}>{jcr_description}</p> }
-        { textIsRich && <div dangerouslySetInnerHTML={{__html: jcr_description}} /> }
+        { textIsRich && <div className={selectedStyles.teaserParagraph} dangerouslySetInnerHTML={{__html: jcr_description}} /> }
         
         <div>
           { buttons?.map((b) => (
-            <button key={b.title} className={selectedStyles.teaserButton}>{b.title}</button>)) }
+            <a key={b.text} href={b.link} target={b.target} className={selectedStyles.teaserButton}>
+              {b.text}
+            </a>
+            )) }
         </div>
       </div>
     </div>

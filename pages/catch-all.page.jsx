@@ -1,35 +1,14 @@
-// import {Suspense, lazy} from 'react'
-import Teaser from "../components/Teaser";
-import strings from "./strings";
 import Container from "../components/Container";
-import Title from "../components/Title";
-import Separator from "../components/Separator";
-import Flex from "../components/Grid/Flex";
+import CoreComponent from "../components/render-components";
 
 export default function Page({model}) {
   if (model?.header?.path === '/content/demo-site/en/home') {
-    const topTeaserProps = model.body.content.children[0].children[0].children[1].children[0].props
-    const bottomTeaserProps = model.body.content.children[0].children[0].children[2].children[3].props
-  
-    // const Separator = lazy(() => import("../components/Separator"));
-    // const Separator = lazy(() => import("https://franklin-project.pages.dev/components/Separator"));
-    
+
+    const content = model.body.content;
     return (
-      <>
-        <Teaser {...topTeaserProps} buttons={strings.teaserButtons} useAltStyles={false} />
-        <Container>
-          <Title>Home</Title>
-          <p>{strings.contentText}</p>
-          {/*<Suspense>*/}
-            <Separator />
-          {/*</Suspense>*/}
-          
-          <Flex direction="row" gap={20}>
-            <Teaser {...bottomTeaserProps} buttons={strings.teaserButtons} />
-            <Teaser {...topTeaserProps} buttons={strings.teaserButtons} />
-          </Flex>
-        </Container>
-      </>
+      <Container>
+        <CoreComponent key={content.ref} node={content} type={content.type} />
+      </Container>
     )
   }
   

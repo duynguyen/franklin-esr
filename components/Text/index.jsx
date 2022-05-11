@@ -1,9 +1,13 @@
 export default function Text(props) {
-  const {textIsRich, text} = props.self
-  
-  if (textIsRich) {
-    return <div dangerouslySetInnerHTML={{__html: text}} />
-  }
+  if(!props.self) return '';
+  const { textIsRich, text } = props.self;
+  const textCss = "";
+  const richTextContent = () => (
+      <div className={textCss} dangerouslySetInnerHTML={{__html: text}} />
+  );
+  const normalTextContent = () => (
+      <div className={textCss}>{text}</div>
+  );
 
-  return <p>{text}</p>
+  return textIsRich ? richTextContent() : normalTextContent();
 }

@@ -1,8 +1,9 @@
 import style from "./index.module.css"
+import containerGlobalStyle from "./container-global.css"
 
-export default function Container({children}) {
+export default function Container({id, children}) {
   return <div className={style.centerContainer}>
-    <div className={style.container}>
+    <div id={id} className={style.container} >
       {children}
     </div>
   </div>
