@@ -4,7 +4,7 @@
   --title-font: "Source Serif Pro", serif;
   --default-font-size: 16px;
   --title-font-weight: 600;
-  --title-font-size: 36px;
+  --title-font-size: 48px;
 
   /* Teaser CSS vars */
   --teaser-button-background: #2954ff;
@@ -30,7 +30,7 @@
   --teaser-font: var(--default-font);
   --teaser-title-font: var(--title-font);
   --teaser-font-size: var(--default-font-size);
-  --teaser-title-font-size: var(--title-font-size);
+  --teaser-title-font-size: 36px;
   --teaser-title-font-weight: var(--title-font-weight);
 
   /* Teaser alt CSS vars */
@@ -50,7 +50,7 @@
   --teaser-alt-second-button-hover-color: #fff;
 
   --teaser-alt-text-color: black;
-  --teaser-alt-pre-title-color: #fff;
+  --teaser-alt-pre-title-color: #607d8b;
   --teaser-alt-pre-title-font-size: .625em;
   --teaser-alt-pre-title-font-weight: 400;
   --teaser-alt-pre-title-text-transform: uppercase;
@@ -59,4 +59,23 @@
   --teaser-alt-font-size: var(--default-font-size);
   --teaser-alt-title-font-size: 28px;
   --teaser-alt-title-font-weight: var(--title-font-weight);
+
+  /* Separator CSS vars */
+  --separator-background-color: #eceff1;
+  --separator-thickness: 2px;
+
+  /* Search Bar CSS vars */
+  --search-bar-color: #607d8b;
+  --search-bar-font-family: var(--default-font);
+  --search-bar-focus-outline-color: #2954ff;
+  --search-bar-hover-background: white;
+  --search-bar-background: #ececec;
+
+  /* Image CSS vars */
+  --image-caption-color: #607d8b;
+  --image-caption-font-size: .625em;
+  --image-font: var(--default-font);
+
+  /* Breadcrumbs CSS vars */
+  --breadcrumbs-font-color: rgb(96, 125, 139);
 }

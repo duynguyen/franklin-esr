@@ -18,7 +18,7 @@
 
 .breadcrumb-path-item {
     display: flex;
-    color: rgb(96, 125, 139);
+    color: var(--breadcrumbs-font-color);
     text-transform: capitalize;
     gap: 30px;
 }

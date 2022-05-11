@@ -6,7 +6,7 @@
 }
 
 .form {
-    background-color: #ececec;
+    background-color: var(--search-bar-background);
     position: relative;
     display: flex;
     align-items: center;
@@ -21,24 +21,24 @@
 
 .input {
     border-radius: 5px;
-    border: 2px solid #ececec;
+    border: 2px solid var(--search-bar-background);
     width: 100%;
     background: none;
     text-decoration: none;
     padding-left: 36px;
-    color: #607d8b;
+    color: var(--search-bar-color);
     font-size: 1em;
     outline: none;
     position: absolute;
     left: 0;
     height: 100%;
-    font-family: "Source Sans Pro", sans-serif;
+    font-family: var(--search-bar-font-family);
 }
 
 .input:focus {
     outline: none;
     /*box-shadow: 0 0 3px 1px #2954ff;*/
-    border: 2px solid #2954ff;
+    border: 2px solid var(--search-bar-focus-outline-color);
 }
 
 .container {

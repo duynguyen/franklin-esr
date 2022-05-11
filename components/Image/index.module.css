@@ -10,7 +10,8 @@
 }
 
 .caption {
-    color: #607d8b;
-    font-size: .625em;
+    font: var(--image-font);
+    color: var(--image-caption-color);
+    font-size: var(--image-caption-font-size);
     margin-top: 1rem;
 }

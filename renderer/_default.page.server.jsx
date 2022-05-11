@@ -3,6 +3,7 @@ import { escapeInject, dangerouslySkipEscape } from 'vite-plugin-ssr'
 import Layout from '../components/Layout'
 import { getPageTitle } from './getPageTitle'
 
+
 export { render }
 export { passToClient }
 

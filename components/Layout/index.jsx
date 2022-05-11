@@ -26,6 +26,7 @@ function Main({ children }) {
   )
 }
 
+
 export default function Layout({ pageContext, children }) {
   let customParams = pageContext?.customParams;
   if (!import.meta.env.SSR) {

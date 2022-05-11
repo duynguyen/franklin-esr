@@ -44,7 +44,7 @@
 
 .teaserTitle {
   font-weight: var(--title-font-weight);
-  font-size: var(--title-font-size);
+  font-size: var(--teaser-title-font-size);
   font-family: var(--title-font);
   margin-top: 0;
 }

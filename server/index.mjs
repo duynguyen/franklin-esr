@@ -105,7 +105,10 @@ async function startServer() {
     }
     const pageContext = await renderPage(pageContextInit)
     const { httpResponse } = pageContext
-    if (!httpResponse) return next()
+    if (!httpResponse) {
+      return next()
+    }
+
     const stream = await httpResponse.getNodeStream()
     const { statusCode, contentType } = httpResponse
     res.status(statusCode).type(contentType)

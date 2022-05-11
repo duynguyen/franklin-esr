@@ -29,12 +29,13 @@
   color: var(--teaser-alt-pre-title-color);
   font-size: var(--teaser-alt-pre-title-font-size);
   font-weight: var(--teaser-alt-pre-title-font-weight);
-  text-align: center;
   text-transform: var(--teaser-alt-pre-title-text-transform);
+    text-align: start;
+    margin-bottom: 0;
 }
 
 .teaserTitle {
-  margin: 19px 0;
+    margin: 8px 0 19px;
   font-weight: var(--teaser-alt-title-font-weight);
   font-size: var(--teaser-alt-title-font-size);
   font-family: var(--teaser-alt-title-font);

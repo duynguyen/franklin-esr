@@ -1,6 +1,6 @@
 import styles from "./index.module.css"
 import {useState} from "react";
-import Link from '../Link'
+import Link from "../Link";
 
 function NavDropdown({navItem}) {
   const [expanded, setExpanded] = useState(false)
@@ -14,7 +14,7 @@ function NavDropdown({navItem}) {
     <Link href={navItem.link}>{navItem.name}</Link>
     <ul style={{visibility: expanded ? "initial" : "collapse"}} className={styles["nav-dropdown"]}>
       { navItem.children.map(c =>
-        <li className={[styles["nav-item"], styles["nav-item-in-dropdown"]].join(" ")} key={c}>
+        <li className={[styles["nav-item"], styles["nav-item-in-dropdown"]].join(" ")} key={c.name}>
           <Link href={c.link}>{c.name}</Link>
         </li>
       ) }
@@ -26,7 +26,7 @@ export default function Nav({items}) {
   return <ul className={styles["nav-group"]}>
     {items.map(i =>
       i.children.length > 0 ?
-        <NavDropdown navItem={i}/> :
+        <NavDropdown navItem={i} key={i} /> :
         <li className={styles["nav-item"]} key={i}>
           <Link href={i.link}>{i.name}</Link>
         </li>

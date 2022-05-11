@@ -1,5 +1,6 @@
 import style from "./index.module.css"
-import Link from '../Link'
+import Link from "../Link";
+
 /***
  *
  * @param path {string}

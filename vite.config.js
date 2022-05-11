@@ -5,5 +5,5 @@ export default {
   plugins: [
     react(),
     ssr()
-  ],
+  ]
 }

@@ -5,26 +5,21 @@ import Title from "../components/Title";
 import Separator from "../components/Separator";
 import Flex from "../components/Grid/Flex";
 
-export default function Page({ model }) {
-  if (model?.header?.path.match('\/content\/demo-site\/[a-z]{2}\/home')) {
-    const teaserId = model.body.content.children[0].children[0].children[1].children[0].props.self.id;
-    const teaserTitle = model.body.content.children[0].children[0].children[1].children[0].props.self.jcr_title;
-    const heroTeaserImage = `https://smartimaging.scene7.com/is/image/` + model.body.content.children[0].children[0].children[1].children[0].props.resolved.fileReference.document.properties.data.metadata['dam:scene7File'];
-    const teaserImage = `https://smartimaging.scene7.com/is/image/` + model.body.content.children[0].children[0].children[2].children[3].props.resolved.fileReference.document.properties.data.metadata['dam:scene7File'];
+export default function Page({model}) {
+  if (model?.header?.path === '/content/demo-site/en/home') {
+    const topTeaserProps = model.body.content.children[0].children[0].children[1].children[0].props
+    const bottomTeaserProps = model.body.content.children[0].children[0].children[2].children[3].props
 
     return (
       <>
-        <Teaser id={teaserId} title={teaserTitle} pretitle={strings.teaserPreTitle} description={strings.teaserDescription}
-                imageUrl={heroTeaserImage} buttons={strings.teaserButtons} useAltStyles={false} />
+        <Teaser {...topTeaserProps} buttons={strings.teaserButtons} useAltStyles={false} />
         <Container>
           <Title>Home</Title>
           <p>{strings.contentText}</p>
           <Separator />
           <Flex direction="row" gap={20}>
-            <Teaser title={strings.teaserTitle} pretitle={strings.teaserPreTitle} description={strings.teaserDescription}
-                    imageUrl={teaserImage} buttons={strings.teaserButtons} />
-            <Teaser title={strings.teaserTitle} pretitle={strings.teaserPreTitle} description={strings.teaserDescription}
-                    imageUrl={teaserImage} buttons={strings.teaserButtons} />
+            <Teaser {...bottomTeaserProps} buttons={strings.teaserButtons} />
+            <Teaser {...topTeaserProps} buttons={strings.teaserButtons} />
           </Flex>
         </Container>
       </>
