@@ -117,8 +117,16 @@ async function handleAPIEvent(request, env, url, previewKey) {
     if (!project) {
       return await defaultResponse()
     }
+  
+    let url;
+    try {
+      url = new URL(`${project}/vars.css`);
+    }
+    catch (e) {
+      return await defaultResponse()
+    }
     
-    const reqCSS = await fetch(`${project}/vars.css`);
+    const reqCSS = await fetch(url);
     if (!reqCSS.ok) {
       return await defaultResponse()
     }
