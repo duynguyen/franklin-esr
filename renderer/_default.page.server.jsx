@@ -3,7 +3,6 @@ import { dangerouslySkipEscape, escapeInject } from 'vite-plugin-ssr'
 import Layout from '../components/Layout'
 import { getPageTitle } from './getPageTitle'
 
-
 export { render }
 export { passToClient }
 
@@ -18,43 +17,27 @@ async function render(pageContext) {
   let documentHtml;
   
   if (import.meta.env.MODE === 'worker') {
-    const pageHtml = ReactDOMServer.renderToString(
-      <Layout pageContext={pageContext}>
-        <Page {...pageProps} />
-      </Layout>,
-    )
-  
-    documentHtml = escapeInject`<!DOCTYPE html>
-    <html lang="en">
+    const stream = await ReactDOMServer.renderToReadableStream(
+      <html lang="en">
       <head>
-        <title>${title}</title>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="description" content="franklin-esr demo">
+        <title>{title}</title>
+        <meta charSet="utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <meta name="description" content="franklin-esr demo"/>
       </head>
       <body>
-        <div id="page-view">${dangerouslySkipEscape(pageHtml)}</div>
+      <div id="page-view">
+        <Layout pageContext={pageContext}>
+          <Page {...pageProps} />
+        </Layout>
+      </div>
       </body>
-    </html>`
-    // const stream = await ReactDOMServer.renderToReadableStream(
-    //   <html lang="en">
-    //   <head>
-    //     <title>${title}</title>
-    //     <meta charSet="utf-8"/>
-    //     <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    //     <meta name="description" content="franklin-esr demo"/>
-    //   </head>
-    //   <body>
-    //   <div id="page-view">
-    //     <Layout pageContext={pageContext}>
-    //       <Page {...pageProps} />
-    //     </Layout>
-    //   </div>
-    //   </body>
-    //   </html>
-    // );
-    //
-    // documentHtml = dangerouslySkipEscape(await new Response(stream).text())
+      </html>
+    );
+    
+    await stream.allReady;
+    
+    documentHtml = dangerouslySkipEscape(await new Response(stream).text())
   }
   else {
     const stream = ReactDOMServer.renderToNodeStream(
@@ -62,7 +45,7 @@ async function render(pageContext) {
         <Page {...pageProps} />
       </Layout>
     )
-    
+
     documentHtml = escapeInject`<!DOCTYPE html>
       <html lang="en">
         <head>

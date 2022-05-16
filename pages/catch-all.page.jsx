@@ -1,3 +1,4 @@
+import {lazy, Suspense} from 'react'
 import Container from "../components/Container";
 import CoreComponent from "../components/render-components";
 
@@ -5,6 +6,7 @@ export default function Page({model}) {
   if (model?.header?.path === '/content/demo-site/en/home') {
 
     const content = model.body.content;
+    
     return (
       <Container>
         <CoreComponent key={content.ref} node={content} type={content.type} />
@@ -12,9 +14,13 @@ export default function Page({model}) {
     )
   }
   
+  const Heading = lazy(() => import('../components/Heading'))
+  
   return (
     <>
-      <h1>Model</h1>
+      <Suspense>
+        <Heading>Model</Heading>
+      </Suspense>
       <pre>{JSON.stringify(model, null, 4)}</pre>
     </>
   )
@@ -26,13 +32,15 @@ export async function onBeforeRender({routeParams, fetch = window.fetch, customP
   }
   
   let model = {};
-  const origin = customParams.origin;
+  const path = routeParams.path;
+  const api = customParams.api;
   const preview = customParams.preview;
   const live = customParams.live;
-  const previewParam = preview ? `&preview=${preview}` : '';
-  const liveParam = live ? `&live` : '';
   
-  const req = await fetch(`${origin}/api/model?path=${routeParams.path}${previewParam}${liveParam}`);
+  const previewParam = preview ? `&preview=${preview}` : '';
+  const liveParam = live ? `&live=true` : '';
+  
+  const req = await fetch(`${api}/model?path=${path}${previewParam}${liveParam}`);
   if (req.ok) {
     model = await req.json();
   }

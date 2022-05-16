@@ -1,16 +1,19 @@
 {
+  "name": "franklin-esr",
   "scripts": {
     "dev": "node ./server/index.mjs",
     "serve:node": "cross-env NODE_ENV=production node ./server/index.mjs",
-    "serve:worker": "wrangler pages dev ./dist/client/ --kv MODELS PAGES CSS",
+    "serve:worker": "wrangler dev",
     "build:worker": "npm run build:client:worker && npm run esbuild:worker",
     "build:client:worker": "vite build && vite build --ssr --mode worker",
     "build:node": "vite build && vite build --ssr",
     "esbuild:worker": "node -r esbuild-register build-worker.js",
     "prod:node": "npm run build:node && npm run serve:node",
-    "prod:worker": "npm run build:worker && npm run serve:worker"
+    "dev:worker": "npm run build:worker && npm run serve:worker",
+    "publish": "wrangler publish"
   },
   "dependencies": {
+    "@cloudflare/kv-asset-handler": "^0.2.0",
     "@esbuild-plugins/node-modules-polyfill": "^0.1.4",
     "@vitejs/plugin-react": "^1.2.0",
     "cross-env": "^7.0.3",

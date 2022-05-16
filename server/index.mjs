@@ -49,11 +49,7 @@ async function startServer() {
     app.use(viteDevServer.middlewares)
   }
   
-  app.get('/api/css', async (req, res) => {
-    res.sendFile(`${process.cwd()}/public/vars.css`);
-  });
-  
-  app.get('/api/model', async (req, res) => {
+  app.get('/model', async (req, res) => {
     const path = req.query.path
     const preview = req.query.preview
 
@@ -97,10 +93,7 @@ async function startServer() {
       url,
       fetch,
       customParams: {
-        origin: format({
-          protocol: req.protocol,
-          host
-        })
+        api: 'http://localhost:3000'
       }
     }
     const pageContext = await renderPage(pageContextInit)

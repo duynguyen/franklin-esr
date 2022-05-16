@@ -14,6 +14,9 @@ esbuild
     logLevel: 'warning',
     format: 'esm',
     target: 'es2020',
+    external: [
+      '__STATIC_CONTENT_MANIFEST'
+    ]
   })
   .then(() => console.log('Worker built successfully'))
   .catch((error) => console.error('Worker build failed', error))
