@@ -5,7 +5,7 @@ import { getPageTitle } from './getPageTitle'
 
 let root
 const { hydrationPromise } = useClientRouter({
-  render(pageContext) {
+  async render(pageContext) {
     const { Page, pageProps, customParams } = pageContext
     
     const customParamsString = sessionStorage.getItem('customParams');
@@ -22,7 +22,7 @@ const { hydrationPromise } = useClientRouter({
     )
     const container = document.getElementById('page-view')
     if (pageContext.isHydration) {
-      root = hydrateRoot(container, page)
+      root = await hydrateRoot(container, page)
     } else {
       if (!root) {
         root = createRoot(container)

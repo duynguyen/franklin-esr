@@ -3,11 +3,10 @@ import vite from 'vite'
 import { createPageRenderer } from 'vite-plugin-ssr'
 import fetch from 'node-fetch'
 import { fileURLToPath, format } from 'url'
-import { dirname } from 'path'
+import { dirname, join } from 'path'
 
-const isProduction = process.env.NODE_ENV === 'production'
 const __dirname = dirname(fileURLToPath(import.meta.url))
-const root = `${__dirname}/..`
+const root = join(__dirname, "..")
 
 const ucmQuery = `
       query GetUCMDocument($path: String!) {
@@ -33,19 +32,21 @@ const ucmQuery = `
       }
     `
 
-startServer()
-
-async function startServer() {
+export async function startServer(config, isProduction = false) {
   const app = express()
-  
+
+  isProduction = isProduction || process.env.NODE_ENV === "production"
+
   let viteDevServer
   if (isProduction) {
     app.use(express.static(`${root}/dist/client`))
   } else {
-    viteDevServer = await vite.createServer({
+    config = config || {
       root,
       server: { middlewareMode: 'ssr' },
-    })
+    }
+
+    viteDevServer = await vite.createServer(config)
     app.use(viteDevServer.middlewares)
   }
   

@@ -9,7 +9,6 @@ export { passToClient }
 const passToClient = ['pageProps', 'documentProps', 'customParams']
 
 async function render(pageContext) {
-  
   const { Page, pageProps } = pageContext
   
   const title = getPageTitle(pageContext)
@@ -38,8 +37,7 @@ async function render(pageContext) {
     await stream.allReady;
     
     documentHtml = dangerouslySkipEscape(await new Response(stream).text())
-  }
-  else {
+  } else {
     const stream = ReactDOMServer.renderToNodeStream(
       <Layout pageContext={pageContext}>
         <Page {...pageProps} />
