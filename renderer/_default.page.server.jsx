@@ -38,7 +38,7 @@ async function render(pageContext) {
     
     documentHtml = dangerouslySkipEscape(await new Response(stream).text())
   } else {
-    const stream = ReactDOMServer.renderToNodeStream(
+    const stream = ReactDOMServer.renderToPipeableStream(
       <Layout pageContext={pageContext}>
         <Page {...pageProps} />
       </Layout>

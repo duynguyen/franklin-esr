@@ -1,0 +1,1003 @@
+{
+  "body":{
+    "contentType":"adobe/aem/composite/v0.1",
+    "content":{
+      "props":{
+        "self":{
+          "cq:lastReplicationAction":"Activate",
+          "cq:lastReplicatedBy":"workflow-process-service",
+          "pwaDisplay":"standalone",
+          "pwaOrientation":"any",
+          "priority":"0.8",
+          "ogType":"website",
+          "frequency":"weekly",
+          "jcr_description":"View the latest McDonald's coupons to find delicious deals on food today! Learn more about McDonald's deals on the McDonald’s app.",
+          "pwaCachestrategy":"staleWhileRevalidate",
+          "jcr_title":"McDonald’s Coupons & Deals Near Me | McDonald’s",
+          "pageType":"content",
+          "cq:lastModified":"2022-01-11T12:20:25.569+00:00",
+          "includeInSitemap":"false",
+          "cq:lastModifiedBy":"kanika.garg@us.mcd.com",
+          "cq:template":"/conf/mcdonalds/settings/wcm/templates/main-content",
+          "navTitle":"Exclusive Deals"
+        }
+      },
+      "type":"mcdonalds/components/structure/basepage",
+      "ref":"/content/mcdonalds/us/en-us/deals/jcr:content",
+      "children":[
+        {
+          "props":{
+            "self":{
+              
+            }
+          },
+          "type":"nt:unstructured",
+          "ref":"/content/mcdonalds/us/en-us/deals/jcr:content/image",
+          "children":[
+            
+          ]
+        },
+        {
+          "props":{
+            "self":{
+              
+            }
+          },
+          "type":"mcdonalds/components/proxy/content/container",
+          "ref":"/content/mcdonalds/us/en-us/deals/jcr:content/root",
+          "children":[
+            {
+              "props":{
+                "self":{
+                  
+                }
+              },
+              "type":"mcdonalds/components/proxy/content/container",
+              "ref":"/content/mcdonalds/us/en-us/deals/jcr:content/root/container",
+              "children":[
+                {
+                  "props":{
+                    "self":{
+                      
+                    }
+                  },
+                  "type":"mcdonalds/components/proxy/content/container",
+                  "ref":"/content/mcdonalds/us/en-us/deals/jcr:content/root/container/container",
+                  "children":[
+                    {
+                      "props":{
+                        "self":{
+                          "cq:styleIds":"1604664243584",
+                          "jcr_title":"Exclusive McDonald's Deals",
+                          "flag":"1",
+                          "smartCropParam":"1-column",
+                          "textIsRich":[
+                            "true",
+                            "true",
+                            "true"
+                          ],
+                          "ctaKpiIdentifier":"Unspecified",
+                          "type":"h1"
+                        }
+                      },
+                      "type":"mcdonalds/components/proxy/content/title",
+                      "ref":"/content/mcdonalds/us/en-us/deals/jcr:content/root/container/container/teaser",
+                      "children":[
+                        {
+                          "props":{
+                            "self":{
+                              
+                            }
+                          },
+                          "type":"nt:unstructured",
+                          "ref":"/content/mcdonalds/us/en-us/deals/jcr:content/root/container/container/teaser/cq:annotations",
+                          "children":[
+                            {
+                              "props":{
+                                "self":{
+                                  "x":"{Long}344",
+                                  "y":"{Long}-125",
+                                  "text":"/content/us/en-us/config/form/carousel/2021/3/fff_deals_carousel",
+                                  "minimized":"{Boolean}true"
+                                }
+                              },
+                              "type":"nt:unstructured",
+                              "ref":"/content/mcdonalds/us/en-us/deals/jcr:content/root/container/container/teaser/cq:annotations/_content_us_en_us_config_form_carousel_2021_3_fff_deals_carousel",
+                              "children":[
+                                
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "props":{
+                            "self":{
+                              
+                            }
+                          },
+                          "type":"nt:unstructured",
+                          "ref":"/content/mcdonalds/us/en-us/deals/jcr:content/root/container/container/teaser/cq:responsive",
+                          "children":[
+                            {
+                              "props":{
+                                "self":{
+                                  "offset":"0",
+                                  "width":"12"
+                                }
+                              },
+                              "type":"nt:unstructured",
+                              "ref":"/content/mcdonalds/us/en-us/deals/jcr:content/root/container/container/teaser/cq:responsive/default",
+                              "children":[
+                                
+                              ]
+                            },
+                            {
+                              "props":{
+                                "self":{
+                                  "offset":"0",
+                                  "width":"12"
+                                }
+                              },
+                              "type":"nt:unstructured",
+                              "ref":"/content/mcdonalds/us/en-us/deals/jcr:content/root/container/container/teaser/cq:responsive/phone",
+                              "children":[
+                                
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "props":{
+                        "self":{
+                          "cq:styleIds":"1632984989495",
+                          "role":"region",
+                          "arialabel":"2 for $6 deal details"
+                        }
+                      },
+                      "type":"mcdonalds/components/proxy/content/columnlayout",
+                      "ref":"/content/mcdonalds/us/en-us/deals/jcr:content/root/container/container/columnlayout",
+                      "children":[
+                        {
+                          "props":{
+                            "self":{
+                              "cq:styleIds":"1604664243584",
+                              "isDecorative":"false",
+                              "flag":"1",
+                              "smartCropParam":"1-column",
+                              "ctaAlign":"left",
+                              "trackingModuleName":"Publication",
+                              "textIsRich":"true",
+                              "moduleName":"Publication",
+                              "fileReference":"/content/dam/sites/usa/nfl/publication/1_Pub_2For6_1168x520.jpg",
+                              "ctaKpiIdentifier":"Unspecified",
+                              "imageServerUrl":"/is/image/"
+                            }
+                          },
+                          "type":"mcdonalds/components/proxy/content/teaser",
+                          "ref":"/content/mcdonalds/us/en-us/deals/jcr:content/root/container/container/columnlayout/teaser",
+                          "children":[
+                            {
+                              "props":{
+                                "self":{
+                                  
+                                }
+                              },
+                              "type":"mcd-gws-global/components/content/common/text",
+                              "ref":"/content/mcdonalds/us/en-us/deals/jcr:content/root/container/container/columnlayout/teaser/text",
+                              "children":[
+                                
+                              ]
+                            },
+                            {
+                              "props":{
+                                "self":{
+                                  
+                                }
+                              },
+                              "type":"nt:unstructured",
+                              "ref":"/content/mcdonalds/us/en-us/deals/jcr:content/root/container/container/columnlayout/teaser/cq:responsive",
+                              "children":[
+                                {
+                                  "props":{
+                                    "self":{
+                                      "offset":"0",
+                                      "width":"8"
+                                    }
+                                  },
+                                  "type":"nt:unstructured",
+                                  "ref":"/content/mcdonalds/us/en-us/deals/jcr:content/root/container/container/columnlayout/teaser/cq:responsive/default",
+                                  "children":[
+                                    
+                                  ]
+                                },
+                                {
+                                  "props":{
+                                    "self":{
+                                      "offset":"0",
+                                      "width":"12"
+                                    }
+                                  },
+                                  "type":"nt:unstructured",
+                                  "ref":"/content/mcdonalds/us/en-us/deals/jcr:content/root/container/container/columnlayout/teaser/cq:responsive/phone",
+                                  "children":[
+                                    
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "props":{
+                            "self":{
+                              "cq:styleIds":"1604664243584",
+                              "flag":"1",
+                              "smartCropParam":"3-column",
+                              "ctaAlign":"left",
+                              "textIsRich":[
+                                "true",
+                                "true",
+                                "true"
+                              ],
+                              "moduleName":"Publication",
+                              "jcr_description":"<p>This deal has ‘share with your best friend’ written all over it. Get any two Big Mac®, Quarter Pounder®* with Cheese, 10 piece Chicken McNuggets® or Filet-O-Fish® for just $6.^</p><p><span class=\"legal-pub\">*Weight before cooking 4 oz. <br>^Prices and participation may vary. Single item at regular price. Limited time offer.</span><br></p>",
+                              "cta":"Order 2 for $6 in the App",
+                              "jcr_title":"<h2>Calling All Besties</h2>",
+                              "actionsEnabled":"true",
+                              "trackingModuleName":"Publication",
+                              "ctaKpiIdentifier":"Unspecified",
+                              "ctaLink":"https://mcdonalds.smart.link/fpvnpu6e4?site_id=deals&creative_id=1col-teaser"
+                            }
+                          },
+                          "type":"mcdonalds/components/proxy/content/teaser",
+                          "ref":"/content/mcdonalds/us/en-us/deals/jcr:content/root/container/container/columnlayout/teaser-1_1924177877",
+                          "children":[
+                            {
+                              "props":{
+                                "self":{
+                                  
+                                }
+                              },
+                              "type":"nt:unstructured",
+                              "ref":"/content/mcdonalds/us/en-us/deals/jcr:content/root/container/container/columnlayout/teaser-1_1924177877/actions",
+                              "children":[
+                                {
+                                  "props":{
+                                    "self":{
+                                      "ctaAriaLabel":"",
+                                      "link":"https://mcdonalds.smart.link/fpvnpu6e4?site_id=deals&creative_id=1col-teaser",
+                                      "text":"Order 2 for $6 in the App"
+                                    }
+                                  },
+                                  "type":"nt:unstructured",
+                                  "ref":"/content/mcdonalds/us/en-us/deals/jcr:content/root/container/container/columnlayout/teaser-1_1924177877/actions/item0",
+                                  "children":[
+                                    
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              "props":{
+                                "self":{
+                                  
+                                }
+                              },
+                              "type":"nt:unstructured",
+                              "ref":"/content/mcdonalds/us/en-us/deals/jcr:content/root/container/container/columnlayout/teaser-1_1924177877/cq:responsive",
+                              "children":[
+                                {
+                                  "props":{
+                                    "self":{
+                                      "offset":"0",
+                                      "width":"4"
+                                    }
+                                  },
+                                  "type":"nt:unstructured",
+                                  "ref":"/content/mcdonalds/us/en-us/deals/jcr:content/root/container/container/columnlayout/teaser-1_1924177877/cq:responsive/default",
+                                  "children":[
+                                    
+                                  ]
+                                },
+                                {
+                                  "props":{
+                                    "self":{
+                                      "offset":"0",
+                                      "width":"12"
+                                    }
+                                  },
+                                  "type":"nt:unstructured",
+                                  "ref":"/content/mcdonalds/us/en-us/deals/jcr:content/root/container/container/columnlayout/teaser-1_1924177877/cq:responsive/phone",
+                                  "children":[
+                                    
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "props":{
+                        "self":{
+                          "cq:styleIds":"1632984989495",
+                          "role":"region",
+                          "arialabel":"free fries and more with MyMcDonald’s rewards"
+                        }
+                      },
+                      "type":"mcdonalds/components/proxy/content/columnlayout",
+                      "ref":"/content/mcdonalds/us/en-us/deals/jcr:content/root/container/container/columnlayout_1936144764",
+                      "children":[
+                        {
+                          "props":{
+                            "self":{
+                              "cq:styleIds":"1604664243584",
+                              "isDecorative":"false",
+                              "flag":"1",
+                              "smartCropParam":"1-column",
+                              "trackingModuleName":"Publication",
+                              "textIsRich":"true",
+                              "moduleName":"Publication",
+                              "fileReference":"/content/dam/sites/usa/nfl/publication/1PUB_MMR_FFNFML_1168x520.jpg",
+                              "ctaKpiIdentifier":"Unspecified",
+                              "imageServerUrl":"/is/image/"
+                            }
+                          },
+                          "type":"mcdonalds/components/proxy/content/teaser",
+                          "ref":"/content/mcdonalds/us/en-us/deals/jcr:content/root/container/container/columnlayout_1936144764/teaser",
+                          "children":[
+                            {
+                              "props":{
+                                "self":{
+                                  
+                                }
+                              },
+                              "type":"mcd-gws-global/components/content/common/text",
+                              "ref":"/content/mcdonalds/us/en-us/deals/jcr:content/root/container/container/columnlayout_1936144764/teaser/text",
+                              "children":[
+                                
+                              ]
+                            },
+                            {
+                              "props":{
+                                "self":{
+                                  
+                                }
+                              },
+                              "type":"nt:unstructured",
+                              "ref":"/content/mcdonalds/us/en-us/deals/jcr:content/root/container/container/columnlayout_1936144764/teaser/cq:responsive",
+                              "children":[
+                                {
+                                  "props":{
+                                    "self":{
+                                      "offset":"0",
+                                      "width":"8"
+                                    }
+                                  },
+                                  "type":"nt:unstructured",
+                                  "ref":"/content/mcdonalds/us/en-us/deals/jcr:content/root/container/container/columnlayout_1936144764/teaser/cq:responsive/default",
+                                  "children":[
+                                    
+                                  ]
+                                },
+                                {
+                                  "props":{
+                                    "self":{
+                                      "offset":"0",
+                                      "width":"12"
+                                    }
+                                  },
+                                  "type":"nt:unstructured",
+                                  "ref":"/content/mcdonalds/us/en-us/deals/jcr:content/root/container/container/columnlayout_1936144764/teaser/cq:responsive/phone",
+                                  "children":[
+                                    
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "props":{
+                            "self":{
+                              "cq:styleIds":"1604664243584",
+                              "flag":"1",
+                              "smartCropParam":"3-column",
+                              "aria":"download the app for free fries now",
+                              "textIsRich":[
+                                "true",
+                                "true",
+                                "true"
+                              ],
+                              "moduleName":"Publication",
+                              "alt":"download the app for free fries now",
+                              "jcr_description":"<p>Get free large Fries when you download the McDonald’s app and join MyMcDonald’s Rewards. Get your choice of Hash Browns, Vanilla Cone, McChicken® or a Cheeseburger free after your first purchase.</p><p><span class=\"legal-pub\">*Free large Fries valid 1x thru 1/31/22 for first time app users at participating McDonald’s. May take up to 48 hours to appear in your deals. Free Loyalty Reward Points valid 1x thru 3/31/22 for first time MyMcDonald’s Rewards users. Program available only at participating McDonald’s. Excludes delivery. McD app download and registration required.</span></p>",
+                              "cta":"Download the App",
+                              "jcr_title":"<h2>Free Fries Now. Free McDonald’s Later.*</h2>",
+                              "actionsEnabled":"true",
+                              "trackingModuleName":"Publication",
+                              "ctaKpiIdentifier":"Unspecified",
+                              "ctaLink":"https://mcdonalds.smart.link/yotm502tc?site_id=deals-page&creative_id=1col-teaser"
+                            }
+                          },
+                          "type":"mcdonalds/components/proxy/content/teaser",
+                          "ref":"/content/mcdonalds/us/en-us/deals/jcr:content/root/container/container/columnlayout_1936144764/teaser-1",
+                          "children":[
+                            {
+                              "props":{
+                                "self":{
+                                  
+                                }
+                              },
+                              "type":"nt:unstructured",
+                              "ref":"/content/mcdonalds/us/en-us/deals/jcr:content/root/container/container/columnlayout_1936144764/teaser-1/actions",
+                              "children":[
+                                {
+                                  "props":{
+                                    "self":{
+                                      "ctaAriaLabel":"download the app for free fries now",
+                                      "link":"https://mcdonalds.smart.link/yotm502tc?site_id=deals-page&creative_id=1col-teaser",
+                                      "text":"Download the App"
+                                    }
+                                  },
+                                  "type":"nt:unstructured",
+                                  "ref":"/content/mcdonalds/us/en-us/deals/jcr:content/root/container/container/columnlayout_1936144764/teaser-1/actions/item0",
+                                  "children":[
+                                    
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              "props":{
+                                "self":{
+                                  
+                                }
+                              },
+                              "type":"nt:unstructured",
+                              "ref":"/content/mcdonalds/us/en-us/deals/jcr:content/root/container/container/columnlayout_1936144764/teaser-1/cq:responsive",
+                              "children":[
+                                {
+                                  "props":{
+                                    "self":{
+                                      "offset":"0",
+                                      "width":"4"
+                                    }
+                                  },
+                                  "type":"nt:unstructured",
+                                  "ref":"/content/mcdonalds/us/en-us/deals/jcr:content/root/container/container/columnlayout_1936144764/teaser-1/cq:responsive/default",
+                                  "children":[
+                                    
+                                  ]
+                                },
+                                {
+                                  "props":{
+                                    "self":{
+                                      "offset":"0",
+                                      "width":"12"
+                                    }
+                                  },
+                                  "type":"nt:unstructured",
+                                  "ref":"/content/mcdonalds/us/en-us/deals/jcr:content/root/container/container/columnlayout_1936144764/teaser-1/cq:responsive/phone",
+                                  "children":[
+                                    
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "props":{
+                        "self":{
+                          "cq:styleIds":"1632984989495",
+                          "role":"region",
+                          "arialabel":"large fries and coffee deals"
+                        }
+                      },
+                      "type":"mcdonalds/components/proxy/content/columnlayout",
+                      "ref":"/content/mcdonalds/us/en-us/deals/jcr:content/root/container/container/columnlayout_798129494",
+                      "children":[
+                        {
+                          "props":{
+                            "self":{
+                              "cq:styleIds":"1604664243584",
+                              "flag":"1",
+                              "smartCropParam":"2-column",
+                              "aria":"order in the app for $1 large fries",
+                              "ctaAlign":"left",
+                              "textIsRich":[
+                                "true",
+                                "true",
+                                "true"
+                              ],
+                              "moduleName":"Publication",
+                              "alt":"order in the app for $1 large fries",
+                              "imageServerUrl":"/is/image/",
+                              "jcr_description":"<p>Large Fries mean you still have enough after sharing with friends. Get ’em for $1—only in our app.<br></p><p><span class=\"legal-pub\">*Offer Valid thru 3/31/22 at participating McDonald’s. Valid 1x/Week. Refer to McD app for details. Mobile Order & Pay at Participating McDonald’s. McD app download and registration required. © 2022 McDonald’s</span></p>",
+                              "cta":"Order in the App",
+                              "isDecorative":"false",
+                              "jcr_title":"<h2>$1 Large Fries*</h2>",
+                              "actionsEnabled":"true",
+                              "trackingModuleName":"Publication",
+                              "fileReference":"/content/dam/sites/usa/nfl/publication/2PUB_LargeFries_574x384.jpg",
+                              "ctaKpiIdentifier":"Unspecified",
+                              "ctaLink":"https://smart.link/i8utx6ahtltt8?site_id=redesigned-deals-page&creative_id=deal-teaser",
+                              "paddingBottomImage":"1.875em",
+                              "altTag":" "
+                            }
+                          },
+                          "type":"mcdonalds/components/proxy/content/teaser",
+                          "ref":"/content/mcdonalds/us/en-us/deals/jcr:content/root/container/container/columnlayout_798129494/teaser",
+                          "children":[
+                            {
+                              "props":{
+                                "self":{
+                                  
+                                }
+                              },
+                              "type":"nt:unstructured",
+                              "ref":"/content/mcdonalds/us/en-us/deals/jcr:content/root/container/container/columnlayout_798129494/teaser/actions",
+                              "children":[
+                                {
+                                  "props":{
+                                    "self":{
+                                      "ctaAriaLabel":"order in the app for $1 large fries",
+                                      "link":"https://smart.link/i8utx6ahtltt8?site_id=redesigned-deals-page&creative_id=deal-teaser",
+                                      "text":"Order in the App"
+                                    }
+                                  },
+                                  "type":"nt:unstructured",
+                                  "ref":"/content/mcdonalds/us/en-us/deals/jcr:content/root/container/container/columnlayout_798129494/teaser/actions/item0",
+                                  "children":[
+                                    
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              "props":{
+                                "self":{
+                                  
+                                }
+                              },
+                              "type":"nt:unstructured",
+                              "ref":"/content/mcdonalds/us/en-us/deals/jcr:content/root/container/container/columnlayout_798129494/teaser/cq:responsive",
+                              "children":[
+                                {
+                                  "props":{
+                                    "self":{
+                                      "offset":"0",
+                                      "width":"6"
+                                    }
+                                  },
+                                  "type":"nt:unstructured",
+                                  "ref":"/content/mcdonalds/us/en-us/deals/jcr:content/root/container/container/columnlayout_798129494/teaser/cq:responsive/default",
+                                  "children":[
+                                    
+                                  ]
+                                },
+                                {
+                                  "props":{
+                                    "self":{
+                                      "offset":"0",
+                                      "width":"12"
+                                    }
+                                  },
+                                  "type":"nt:unstructured",
+                                  "ref":"/content/mcdonalds/us/en-us/deals/jcr:content/root/container/container/columnlayout_798129494/teaser/cq:responsive/phone",
+                                  "children":[
+                                    
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "props":{
+                            "self":{
+                              "cq:styleIds":"1604664243584",
+                              "flag":"1",
+                              "smartCropParam":"2-column",
+                              "aria":"use the app to order $0.99 premium roast coffee or iced coffee",
+                              "ctaAlign":"left",
+                              "textIsRich":[
+                                "true",
+                                "true",
+                                "true"
+                              ],
+                              "moduleName":"Publication",
+                              "alt":"use the app to order $0.99 premium roast coffee or iced coffee",
+                              "imageServerUrl":"/is/image/",
+                              "jcr_description":"<p>Ice-cold or deliciously hot, get it anytime for just $0.99.</p><p><span class=\"legal-pub\">*Offer Valid thru 3/31/22 at participating McDonald’s. Valid 1x/Day. Refer to McD app for Details. Mobile Order & Pay at Participating McDonald’s. McD app download and registration required. © 2022 McDonald’s</span></p>",
+                              "cta":"Use the App to Order",
+                              "isDecorative":"false",
+                              "jcr_title":"<h2>$0.99 Any Size Premium Roast Coffee or Iced Coffee*</h2>",
+                              "actionsEnabled":"true",
+                              "trackingModuleName":"Publication",
+                              "fileReference":"/content/dam/sites/usa/nfl/publication/2Pub_99CentBev_DealsPage_574x384.jpg",
+                              "ctaKpiIdentifier":"Unspecified",
+                              "ctaLink":"https://smart.link/e1vc29qcpc354?site_id=redesigned-deal-page&creative_id=deal-teaser",
+                              "paddingBottomImage":"1.875em"
+                            }
+                          },
+                          "type":"mcdonalds/components/proxy/content/teaser",
+                          "ref":"/content/mcdonalds/us/en-us/deals/jcr:content/root/container/container/columnlayout_798129494/teaser-1",
+                          "children":[
+                            {
+                              "props":{
+                                "self":{
+                                  
+                                }
+                              },
+                              "type":"nt:unstructured",
+                              "ref":"/content/mcdonalds/us/en-us/deals/jcr:content/root/container/container/columnlayout_798129494/teaser-1/actions",
+                              "children":[
+                                {
+                                  "props":{
+                                    "self":{
+                                      "ctaAriaLabel":"use the app to order $0.99 premium roast coffee or iced coffee",
+                                      "link":"https://smart.link/e1vc29qcpc354?site_id=redesigned-deal-page&creative_id=deal-teaser",
+                                      "text":"Use the App to Order"
+                                    }
+                                  },
+                                  "type":"nt:unstructured",
+                                  "ref":"/content/mcdonalds/us/en-us/deals/jcr:content/root/container/container/columnlayout_798129494/teaser-1/actions/item0",
+                                  "children":[
+                                    
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              "props":{
+                                "self":{
+                                  
+                                }
+                              },
+                              "type":"nt:unstructured",
+                              "ref":"/content/mcdonalds/us/en-us/deals/jcr:content/root/container/container/columnlayout_798129494/teaser-1/cq:responsive",
+                              "children":[
+                                {
+                                  "props":{
+                                    "self":{
+                                      "offset":"0",
+                                      "width":"6"
+                                    }
+                                  },
+                                  "type":"nt:unstructured",
+                                  "ref":"/content/mcdonalds/us/en-us/deals/jcr:content/root/container/container/columnlayout_798129494/teaser-1/cq:responsive/default",
+                                  "children":[
+                                    
+                                  ]
+                                },
+                                {
+                                  "props":{
+                                    "self":{
+                                      "offset":"0",
+                                      "width":"12"
+                                    }
+                                  },
+                                  "type":"nt:unstructured",
+                                  "ref":"/content/mcdonalds/us/en-us/deals/jcr:content/root/container/container/columnlayout_798129494/teaser-1/cq:responsive/phone",
+                                  "children":[
+                                    
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "props":{
+                        "self":{
+                          "cq:styleIds":"1632984989495",
+                          "role":"region",
+                          "arialabel":"free fries on Friday deal"
+                        }
+                      },
+                      "type":"mcdonalds/components/proxy/content/columnlayout",
+                      "ref":"/content/mcdonalds/us/en-us/deals/jcr:content/root/container/container/columnlayout_353809991",
+                      "children":[
+                        {
+                          "props":{
+                            "self":{
+                              "cq:styleIds":"1604664243584",
+                              "flag":"1",
+                              "smartCropParam":"2-column",
+                              "aria":"use the app to order for that free fries friday feeling",
+                              "ctaAlign":"left",
+                              "textIsRich":[
+                                "true",
+                                "true",
+                                "true"
+                              ],
+                              "moduleName":"Publication",
+                              "alt":"use the app to order for that free fries friday feeling",
+                              "imageServerUrl":"/is/image/",
+                              "jcr_description":"<p>Friday is better than ever, thanks to free medium Fries. Get them every Friday with a minimum $1 purchase, only in our app with Mobile Order & Pay.*</p><p><span class=\"legal-pub\">*Offer valid 1x use each Friday thru 3/31/22 with contactless mobile ordering with a minimum purchase of $1 (excluding tax). McD app download and registration required. Offer only available through Mobile Order & Pay. Mobile Order & Pay at participating McDonald’s.</span></p>",
+                              "cta":"Use the App to Order",
+                              "isDecorative":"false",
+                              "jcr_title":"<h2>That Free Fries Friday Feeling</h2>",
+                              "actionsEnabled":"true",
+                              "trackingModuleName":"Publication",
+                              "fileReference":"/content/dam/sites/usa/nfl/publication/FFF_2PUB_574x384.jpg",
+                              "ctaKpiIdentifier":"Unspecified",
+                              "ctaLink":"https://smart.link/em0tb4gt29t0k?site_id=redesigned-deals-page&creative_id=deal-teaser",
+                              "paddingBottomImage":"1.875em",
+                              "altTag":" "
+                            }
+                          },
+                          "type":"mcdonalds/components/proxy/content/teaser",
+                          "ref":"/content/mcdonalds/us/en-us/deals/jcr:content/root/container/container/columnlayout_353809991/teaser",
+                          "children":[
+                            {
+                              "props":{
+                                "self":{
+                                  
+                                }
+                              },
+                              "type":"nt:unstructured",
+                              "ref":"/content/mcdonalds/us/en-us/deals/jcr:content/root/container/container/columnlayout_353809991/teaser/actions",
+                              "children":[
+                                {
+                                  "props":{
+                                    "self":{
+                                      "ctaAriaLabel":"use the app to order for that free fries friday feeling",
+                                      "link":"https://smart.link/em0tb4gt29t0k?site_id=redesigned-deals-page&creative_id=deal-teaser",
+                                      "text":"Use the App to Order"
+                                    }
+                                  },
+                                  "type":"nt:unstructured",
+                                  "ref":"/content/mcdonalds/us/en-us/deals/jcr:content/root/container/container/columnlayout_353809991/teaser/actions/item0",
+                                  "children":[
+                                    
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              "props":{
+                                "self":{
+                                  
+                                }
+                              },
+                              "type":"nt:unstructured",
+                              "ref":"/content/mcdonalds/us/en-us/deals/jcr:content/root/container/container/columnlayout_353809991/teaser/cq:responsive",
+                              "children":[
+                                {
+                                  "props":{
+                                    "self":{
+                                      "offset":"0",
+                                      "width":"6"
+                                    }
+                                  },
+                                  "type":"nt:unstructured",
+                                  "ref":"/content/mcdonalds/us/en-us/deals/jcr:content/root/container/container/columnlayout_353809991/teaser/cq:responsive/default",
+                                  "children":[
+                                    
+                                  ]
+                                },
+                                {
+                                  "props":{
+                                    "self":{
+                                      "offset":"0",
+                                      "width":"12"
+                                    }
+                                  },
+                                  "type":"nt:unstructured",
+                                  "ref":"/content/mcdonalds/us/en-us/deals/jcr:content/root/container/container/columnlayout_353809991/teaser/cq:responsive/phone",
+                                  "children":[
+                                    
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "props":{
+                        "self":{
+                          "cq:styleIds":"1632984989495",
+                          "role":"complementary",
+                          "arialabel":"free fries on Friday deal with mobile ordering and curbside pickup"
+                        }
+                      },
+                      "type":"mcdonalds/components/proxy/content/columnlayout",
+                      "ref":"/content/mcdonalds/us/en-us/deals/jcr:content/root/container/container/columnlayout_1335079941",
+                      "children":[
+                        {
+                          "props":{
+                            "self":{
+                              "cq:styleIds":"1604664243584",
+                              "isDecorative":"false",
+                              "flag":"1",
+                              "smartCropParam":"3-column",
+                              "trackingModuleName":"Publication",
+                              "textIsRich":"true",
+                              "moduleName":"Publication",
+                              "fileReference":"/content/dam/sites/usa/nfl/publication/1PUB_Desktop_Curbside_376x252.jpg",
+                              "ctaKpiIdentifier":"Unspecified",
+                              "imageServerUrl":"/is/image/"
+                            }
+                          },
+                          "type":"mcdonalds/components/proxy/content/teaser",
+                          "ref":"/content/mcdonalds/us/en-us/deals/jcr:content/root/container/container/columnlayout_1335079941/teaser",
+                          "children":[
+                            {
+                              "props":{
+                                "self":{
+                                  
+                                }
+                              },
+                              "type":"mcd-gws-global/components/content/common/text",
+                              "ref":"/content/mcdonalds/us/en-us/deals/jcr:content/root/container/container/columnlayout_1335079941/teaser/text",
+                              "children":[
+                                
+                              ]
+                            },
+                            {
+                              "props":{
+                                "self":{
+                                  
+                                }
+                              },
+                              "type":"nt:unstructured",
+                              "ref":"/content/mcdonalds/us/en-us/deals/jcr:content/root/container/container/columnlayout_1335079941/teaser/cq:responsive",
+                              "children":[
+                                {
+                                  "props":{
+                                    "self":{
+                                      "offset":"0",
+                                      "width":"4"
+                                    }
+                                  },
+                                  "type":"nt:unstructured",
+                                  "ref":"/content/mcdonalds/us/en-us/deals/jcr:content/root/container/container/columnlayout_1335079941/teaser/cq:responsive/default",
+                                  "children":[
+                                    
+                                  ]
+                                },
+                                {
+                                  "props":{
+                                    "self":{
+                                      "offset":"0",
+                                      "width":"12"
+                                    }
+                                  },
+                                  "type":"nt:unstructured",
+                                  "ref":"/content/mcdonalds/us/en-us/deals/jcr:content/root/container/container/columnlayout_1335079941/teaser/cq:responsive/phone",
+                                  "children":[
+                                    
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "props":{
+                            "self":{
+                              "cq:styleIds":"1604664243584",
+                              "flag":"1",
+                              "smartCropParam":"1-column",
+                              "aria":"use the app to order free fries with contactless mobile ordering and curbside pickup",
+                              "textIsRich":[
+                                "true",
+                                "true",
+                                "true"
+                              ],
+                              "moduleName":"Publication",
+                              "alt":"use the app to order free fries with contactless mobile ordering and curbside pickup",
+                              "jcr_description":"<p>Get free medium Fries every Friday, exclusively with Mobile Order & Pay with any minimum $1 purchase.*</p><p><span class=\"legal-pub\">*Offer valid 1x each Friday thru 3/31/22 with minimum purchase of $1 (excluding tax). McD app download and registration required. Offer only available through Mobile Order & Pay. Mobile Order & Pay at participating McDonald's. © 2022 McDonald's</span></p>",
+                              "cta":"Use the App to Order",
+                              "jcr_title":"<h2>Get Your Free Fries* with Contactless Mobile Ordering and Curbside Pickup</h2>",
+                              "actionsEnabled":"true",
+                              "trackingModuleName":"Publication",
+                              "ctaKpiIdentifier":"Unspecified",
+                              "ctaLink":"https://smart.link/9l9sg1d133mzq?site_id=redesigned-deals-age&creative_id=1col-teaser"
+                            }
+                          },
+                          "type":"mcdonalds/components/proxy/content/teaser",
+                          "ref":"/content/mcdonalds/us/en-us/deals/jcr:content/root/container/container/columnlayout_1335079941/teaser-1",
+                          "children":[
+                            {
+                              "props":{
+                                "self":{
+                                  
+                                }
+                              },
+                              "type":"nt:unstructured",
+                              "ref":"/content/mcdonalds/us/en-us/deals/jcr:content/root/container/container/columnlayout_1335079941/teaser-1/actions",
+                              "children":[
+                                {
+                                  "props":{
+                                    "self":{
+                                      "ctaAriaLabel":"use the app to order free fries with contactless mobile ordering and curbside pickup",
+                                      "link":"https://smart.link/9l9sg1d133mzq?site_id=redesigned-deals-age&creative_id=1col-teaser",
+                                      "text":"Use the App to Order"
+                                    }
+                                  },
+                                  "type":"nt:unstructured",
+                                  "ref":"/content/mcdonalds/us/en-us/deals/jcr:content/root/container/container/columnlayout_1335079941/teaser-1/actions/item0",
+                                  "children":[
+                                    
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              "props":{
+                                "self":{
+                                  
+                                }
+                              },
+                              "type":"nt:unstructured",
+                              "ref":"/content/mcdonalds/us/en-us/deals/jcr:content/root/container/container/columnlayout_1335079941/teaser-1/cq:responsive",
+                              "children":[
+                                {
+                                  "props":{
+                                    "self":{
+                                      "offset":"0",
+                                      "width":"8"
+                                    }
+                                  },
+                                  "type":"nt:unstructured",
+                                  "ref":"/content/mcdonalds/us/en-us/deals/jcr:content/root/container/container/columnlayout_1335079941/teaser-1/cq:responsive/default",
+                                  "children":[
+                                    
+                                  ]
+                                },
+                                {
+                                  "props":{
+                                    "self":{
+                                      "offset":"0",
+                                      "width":"12"
+                                    }
+                                  },
+                                  "type":"nt:unstructured",
+                                  "ref":"/content/mcdonalds/us/en-us/deals/jcr:content/root/container/container/columnlayout_1335079941/teaser-1/cq:responsive/phone",
+                                  "children":[
+                                    
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "properties":{
+    "schema":"aem:page",
+    "data":{
+      "description":"View the latest McDonald's coupons to find delicious deals on food today! Learn more about McDonald's deals on the McDonald’s app.",
+      "title":"McDonald’s Coupons & Deals Near Me | McDonald’s"
+    }
+  },
+  "header":{
+    "id":"aem:/content/mcdonalds/us/en-us/deals",
+    "role":"cq:Page",
+    "generator":"com.adobe.cq.ibiza-ucm-adapters/0.0.6/PageDocument",
+    "filename":"deals",
+    "path":"/content/mcdonalds/us/en-us/deals"
+  }
+}

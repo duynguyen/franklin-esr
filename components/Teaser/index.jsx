@@ -16,7 +16,8 @@ export default function Teaser(props) {
 
   const useAltStyles = (id == 'custom-teaser' ? false : true)
   
-  const imageUrl = baseUrl + props.resolved.fileReference.document.properties.data.metadata['dam:scene7File']
+  // const imageUrl = baseUrl + props.resolved.fileReference.document.properties.data.metadata['dam:scene7File']
+  const imageUrl = baseUrl + 'image.png'
 
   const selectedStyles = useAltStyles ? altStyles : defaultStyles;
   
