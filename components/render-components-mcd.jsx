@@ -1,5 +1,5 @@
 import React from "react";
-import Teaser from "./Teaser";
+import McdTeaser from "./McdTeaser";
 import Separator from "./Separator";
 import Title from "./Title";
 import Text from "./Text";
@@ -14,7 +14,7 @@ const ComponentHandlers = {
     const buttons = node.children[1]?.children?.map((c) => {
       return {"text": c.props.self.text, "link": c.props.self.link, "target": c.props.self.linkTarget}
     })
-    return [Teaser, {buttons, ...node.props}, null]
+    return [McdTeaser, {buttons, ...node.props}, null]
   }
 };
 

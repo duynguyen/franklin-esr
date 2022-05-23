@@ -1,6 +1,7 @@
 import {hydrateRoot, createRoot} from 'react-dom/client'
 import { useClientRouter } from 'vite-plugin-ssr/client/router'
-import Layout from '../components/Layout'
+// import Layout from '../components/Layout'
+import McdLayout from '../components/McdLayout'
 import { getPageTitle } from './getPageTitle'
 
 let root
@@ -16,9 +17,9 @@ const { hydrationPromise } = useClientRouter({
     }
     
     const page = (
-      <Layout pageContext={pageContext}>
+      <McdLayout pageContext={pageContext}>
         <Page {...pageProps} />
-      </Layout>
+      </McdLayout>
     )
     const container = document.getElementById('page-view')
     if (pageContext.isHydration) {

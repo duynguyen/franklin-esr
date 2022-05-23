@@ -1,0 +1,72 @@
+.teaserContainer {
+  height: initial;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.heroImage {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  min-height: 350px;
+}
+
+.contentContainer {
+  color: var(--teaser-alt-text-color);
+}
+
+.teaserTextContainer {
+  text-align: initial;
+}
+
+.teaserParagraph {
+  margin-top: 1em;
+  margin-bottom: 1.5em;
+}
+
+.teaserPreTitle {
+  color: var(--teaser-alt-pre-title-color);
+  font-size: var(--teaser-alt-pre-title-font-size);
+  font-weight: var(--teaser-alt-pre-title-font-weight);
+  text-transform: var(--teaser-alt-pre-title-text-transform);
+    text-align: start;
+    margin-bottom: 0;
+}
+
+.teaserTitle {
+    margin: 8px 0 19px;
+  font-weight: var(--teaser-alt-title-font-weight);
+  font-size: var(--teaser-alt-title-font-size);
+  font-family: var(--teaser-alt-title-font);
+}
+
+.teaserButton {
+  background: var(--teaser-alt-button-background);
+  border-radius: var(--teaser-alt-button-border-radius);
+  display: inline;
+  padding: var(--teaser-alt-button-padding);
+  border: var(--teaser-alt-button-border);
+  color: var(--teaser-alt-button-color);
+  margin: 0 1em 2em 0;
+  text-decoration: none;
+  font-family: var(--teaser-alt-font);
+  font-size: 16px;
+}
+
+.teaserButton:hover {
+  background: var(--teaser-alt-button-hover-background);
+  border: var(--teaser-alt-button-hover-border);
+}
+
+.teaserButton + .teaserButton {
+  background: var(--teaser-alt-second-button-background);
+  border: var(--teaser-alt-second-button-border);
+  color: var(--teaser-alt-second-button-color);
+}
+
+.teaserButton + .teaserButton:hover {
+  background: var(--teaser-alt-second-button-hover-background);
+  border: var(--teaser-alt-second-button-hover-border);
+  color: var(--teaser-alt-second-button-hover-color);
+}

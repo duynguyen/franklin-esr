@@ -1,0 +1,41 @@
+/* This CSS is common to all pages */
+
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700;1,900&family=Source+Serif+Pro:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700;1,900&display=swap');
+
+body {
+  margin: 0;
+  font-family: var(--default-font);
+}
+* {
+  box-sizing: border-box;
+}
+a {
+  text-decoration: none;
+}
+a.navigation-link {
+  padding: 2px 10px;
+  margin-left: -10px;
+}
+a.navigation-link.is-active {
+  color: #000;
+  /*background-color: #eee;*/
+}
+code {
+  font-family: monospace;
+  background-color: #eaeaea;
+  padding: 3px 5px;
+  border-radius: 4px;
+}
+
+#page-content {
+  transition: opacity 0.1s ease-in;
+}
+#page-content.page-transition {
+  opacity: 0;
+}
+p {
+  line-height: 28px;
+}
+a {
+  color: rgb(41, 84, 255);
+}
